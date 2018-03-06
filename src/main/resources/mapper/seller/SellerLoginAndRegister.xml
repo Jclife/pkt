@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPro.dao.seller.SellerLoginAndRegisterDao">
+    <select id="getStoreInfo" resultType="myPro.bean.seller.Store">
+        SELECT * FROM store_tab WHERE store_account = #{account}
+    </select>
+
+    <insert id="insertNewStore" parameterType="myPro.bean.seller.Store">
+        INSERT into store_tab (store_name,store_account,store_password)
+        VALUES (#{store_name,jdbcType=VARCHAR},#{store_account,jdbcType=VARCHAR},#{store_password,jdbcType=VARCHAR})
+    </insert>
+</mapper>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="pkt:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="com.neusoft.war">
+      <element id="artifact" artifact-name="pkt:war exploded" />
+    </root>
+  </artifact>
+</component>

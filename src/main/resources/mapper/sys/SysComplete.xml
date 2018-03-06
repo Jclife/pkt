@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPro.dao.sys.SysCompleteDao">
+
+    <resultMap id="goodsMap" type="myPro.bean.seller.Goods">
+        <id column="goods_id" property="goods_id"/>
+        <result column="store_id" property="store_id"/>
+        <result column="goods_name" property="goods_name"/>
+        <result column="goods_origin" property="goods_origin"/>
+        <result column="goods_price" property="goods_price"/>
+        <result column="goods_price_now" property="goods_price_now"/>
+        <result column="goods_count" property="goods_count"/>
+        <result column="goods_tags" property="goods_tags"/>
+        <result column="goods_classify" property="goods_classify"/>
+        <result column="goods_imgs" property="goods_imgs"/>
+        <result column="goods_desc" property="goods_desc"/>
+        <result column="goods_comment" property="goods_comment"/>
+    </resultMap>
+
+    <select id="getAllRecoGoodsInIndex" resultMap="goodsMap">
+        SELECT * FROM goods_tab ORDER BY goods_sale_count DESC
+        <choose>
+            <when test="limit!=-1">
+                    limit #{limit}
+            </when>
+            <otherwise></otherwise>
+        </choose>
+        <choose>
+            <when test="last!=-1">
+                ,#{last}
+            </when>
+            <otherwise></otherwise>
+        </choose>
+    </select>
+
+    <select id="getShopLists" resultMap="goodsMap">
+        SELECT * FROM goods_tab
+        <where>
+            <choose>
+                <when test="type==1">
+                    goods_classify=1
+                </when>
+                <when test="type==2">
+                    goods_classify=2
+                </when>
+                <when test="type==3">
+                    goods_classify=3
+                </when>
+                <when test="type==4">
+                    goods_classify=4
+                </when>
+                <otherwise>
+                    1=1
+                </otherwise>
+            </choose>
+            ORDER BY goods_sale_count
+            <choose>
+                <when test="order==0">
+                    DESC
+                </when>
+                <otherwise></otherwise>
+            </choose>
+        </where>
+        <choose>
+            <when test="limit!=-1">
+                limit #{limit}
+            </when>
+            <otherwise></otherwise>
+        </choose>
+        <choose>
+            <when test="last!=-1">
+                ,#{last}
+            </when>
+            <otherwise></otherwise>
+        </choose>
+    </select>
+
+    <select id="getGoodsInId" resultMap="goodsMap">
+        SELECT * FROM goods_tab WHERE goods_id = #{id}
+    </select>
+
+    <insert id="insertCart" parameterType="myPro.bean.sys.Cart">
+        INSERT INTO cart_tab (user_id,goods_id,goods_count,add_time)
+        VALUES (#{user_id,jdbcType=INTEGER},#{goods_id,jdbcType=INTEGER},#{goods_count,jdbcType=INTEGER},#{add_time,jdbcType=TIMESTAMP})
+    </insert>
+
+    <update id="addCartNum">
+        UPDATE cart_tab SET goods_count=#{count},add_time = #{time} WHERE goods_id = #{goods_id}
+    </update>
+
+    <select id="getCartLists" resultType="myPro.bean.sys.Cart">
+        SELECT * FROM cart_tab WHERE user_id = #{user_id}
+        <choose>
+            <when test="goods_id!=-1">AND goods_id = #{goods_id}</when>
+            <otherwise></otherwise>
+        </choose>
+    </select>
+
+    <delete id="deleteCart">
+        DELETE FROM cart_tab WHERE user_id=#{user_id} AND goods_id = #{goods_id}
+    </delete>
+
+    <update id="updateCartList">
+        UPDATE cart_tab SET goods_count = #{num}
+        WHERE user_id = #{user_id} AND goods_id = #{goods_id}
+    </update>
+
+    <insert id="insertCommentTab">
+        INSERT INTO comment_tab(user_id,goods_id,goods_count,userInfo,shopTime)
+        VALUES (#{user_id,jdbcType=INTEGER},#{goods_id,jdbcType=INTEGER},#{num,jdbcType=INTEGER},#{userInfo,jdbcType=VARCHAR},#{time,jdbcType=TIMESTAMP})
+    </insert>
+
+    <select id="getHistoryGoods" resultType="myPro.bean.sys.HistoryGoods">
+        SELECT * FROM comment_tab WHERE user_id = #{user_id}
+    </select>
+
+    <update id="addComment">
+         UPDATE comment_tab SET content = #{text}
+        WHERE user_id = #{user_id} AND goods_id = #{goods_id} AND com_id = #{com_id}
+    </update>
+
+    <select id="getShopComment" resultType="myPro.bean.sys.HistoryGoods">
+        SELECT * FROM comment_tab WHERE goods_id = #{goods_id}
+    </select>
+
+    <select id="getUserInfo" resultType="myPro.bean.sys.User">
+        SELECT * FROM user_tab WHERE user_id = #{user_id}
+    </select>
+
+    <update id="saleGoodsCount">
+        UPDATE goods_tab SET goods_sale_count = goods_sale_count + #{num}
+        WHERE goods_id = #{goods_id}
+    </update>
+
+</mapper>

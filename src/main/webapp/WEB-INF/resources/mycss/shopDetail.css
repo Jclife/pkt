@@ -1,0 +1,12 @@
+.summary button{
+    padding: 12px 29px;
+    border: 1px solid;
+    border-color: #5fbd74;
+    border-radius: 3px;
+    background: #5fbd74;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: bold;
+    letter-spacing: .05em;
+}

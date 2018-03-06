@@ -1,0 +1,209 @@
+.personal{
+	width: 1200px;
+	height: auto;
+	overflow: hidden;
+	margin:auto;
+}
+.personal .title{
+	font-size: 24px;
+    margin-right: 20px;
+    color: #555555;
+}
+.personal .title span{
+	font-size: 14px;
+	margin-left: 10px;
+}
+.personal .per_nav{
+	width:auto;
+	display:inline-block;
+	height: 38px;
+	background:#E9E9E9;
+	border-radius: 5px;
+	margin-top: 45px;
+	margin-bottom: 30px;
+}
+.personal .per_nav li{
+	width: 130px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	float: left;
+	font-size: 14px;
+	color: #505050;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 10px;
+}
+.personal .per_nav li:last-child{
+	margin-right: 0px;
+}
+.personal .per_nav li.active{
+	background:#7fca90;
+	color:#fff;
+}
+
+.personal .per_nav li:hover{
+	background:#7fca90;
+	color:#fff;
+}
+.per_nav2{
+	display: none;
+}
+.personal .per_box{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	border: 1px #DCDCDC solid;
+	padding: 20px;
+	box-sizing: border-box;
+	padding-bottom: 50px;
+}
+
+.personal .per_box .per_navul{
+	width: 100%;
+	height: 40px;
+	border-bottom: 1px #D7D7D7 solid;
+}
+.personal .per_box .per_navul li{
+	width:auto;
+	height: 40px;
+	float: left;
+	line-height: 40px;
+	font-size: 14px;
+	color: #555555;
+	width: 110px;
+	text-align: center;
+}
+.personal .per_box .per_listul{
+	width: 100%;
+	height: 100px;
+	border-bottom: 1px #D7D7D7 solid;
+}
+.personal .per_box .per_listul li{
+	height: 60px;
+	float: left;
+	line-height: 62px;
+	font-size: 14px;
+	color: #555555;
+	width: 110px;
+	text-align: center;
+	margin-top: 10px;
+}
+.personal .per_box .per_listul>p{
+	clear: both;
+	font-size: 14px;
+	color: #909090;
+	margin-left: 30px;
+	line-height: 33px;
+}	
+.personal .per_info{
+	width: 100%;
+	height: 270px;
+	overflow: hidden;
+	border: 1px #DCDCDC solid;
+	padding: 20px;
+	box-sizing: border-box;
+	padding-bottom: 50px;
+	box-sizing: border-box;
+}
+.personal .per_info form{
+	width: 366px;
+	height: 200px;
+}
+.personal .per_info form p{
+	width: 100%;
+	height: 30px;
+	margin-top: 20px;
+	font-size: 14px;
+	color: #6d6d6d;
+	line-height: 30px;
+}
+.personal .per_info form p span:nth-child(1){
+	width: 90px;
+	display: block;
+	float: left;
+	text-align: right;
+}
+.personal .per_info form p input{
+	width: 205px;
+	height: 26px;
+	border: 1px #CFCFCF solid;
+	border-radius: 3px;
+	margin: 0px 10px;
+	padding-left: 20px;
+	box-sizing: border-box;
+}
+.personal .per_info form .per_info_btn{
+	width: 110px;
+	height: 35px;
+	color: #fff;
+	text-align: center;
+	line-height: 35px;
+	border-radius: 5px;
+	background: #D70000;
+	font-size: 14px;
+	margin: 20px auto;
+}
+
+.personal .per_coupon{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	border: 1px #DCDCDC solid;
+	padding: 20px;
+	box-sizing: border-box;
+	padding-bottom: 50px;
+	box-sizing: border-box;
+}
+.personal .per_coupon ul{
+	width: 90%;
+	height: 30px;
+	background: #F5F5F5;
+}
+.personal .per_coupon ul li{
+	float: left;
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 12px;
+	color: #555555;
+	margin-right: 20px;
+	cursor: pointer;
+}
+.personal .per_coupon ul li.active{
+	color: #d70000;
+}
+.personal .per_coupon .per_coupon_list{
+	width: 244px;
+	height: 128px;
+	float: left;
+	background: url(../../myImgs/coupon.png);
+	margin-top: 40px;
+	margin-right: 40px;
+	text-align: center;
+}
+.personal .per_coupon .per_coupon_old{
+	background: url(../../myImgs/coupon2.png);
+}
+
+.personal .per_coupon .per_coupon_list p:nth-child(1){
+	color: #fff;
+	font-size: 30px;
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
+.personal .per_coupon .per_coupon_list p:nth-child(2){
+	color: #fff;
+	font-size: 14px;
+}
+.personal .per_coupon .per_coupon_list p:nth-child(3){
+	color: #31AAAD;
+	font-size: 12px;
+	margin-top: 8px;
+}
+.personal .per_coupon .per_coupon_old p:nth-child(3){
+	background: url(../../myImgs/coupon2.png);
+	color: #fff;
+}
+

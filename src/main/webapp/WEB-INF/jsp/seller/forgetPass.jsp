@@ -35,7 +35,7 @@
                 <input type="number" id="veri-code">
                 <a href="javascript:;" class="send">发送验证码</a>
                 <span class="time hide"><em>120</em>s</span>
-                <span class="tel-warn error hide"><em>验证码错误，请重新输入</em><i class="icon-warn"></i></span>
+                <span class="tel-warn error hide"><em><验证></验证>码错误，请重新输入</em><i class="icon-warn"></i></span>
             </p>
             <p class="p-input pos code pc-code">
                 <label for="veri">请输入验证码</label>

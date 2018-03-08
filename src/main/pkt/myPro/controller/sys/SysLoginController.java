@@ -39,17 +39,22 @@ public class SysLoginController implements SysPageManager {
     public Map login_check(String phone, String password, HttpSession session){
         Map<String,String> result = new HashMap<String, String>();
         User user = service.getUserInfo(phone);
-        if (phone.equals(user.getUser_phone())&&password.equals(user.getUser_password())){
-            if (SessionUtils.setSessionAtt(session,user,"userInfo")==0){
-                result.put("status","ok");
-                result.put("name",user.getUser_name());
-            }else {
-                result.put("status","error");
-            }
+        if(user!=null){
+            if (phone.equals(user.getUser_phone())&&password.equals(user.getUser_password())){
+                if (SessionUtils.setSessionAtt(session,user,"userInfo")==0){
+                    result.put("status","ok");
+                    result.put("name",user.getUser_name());
+                }else {
+                    result.put("status","error");
+                }
 
+            }else {
+                result.put("status","fail");
+            }
         }else {
-            result.put("status","fail");
+            result.put("status","error");
         }
+
         return result;
     }
 

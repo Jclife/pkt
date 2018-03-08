@@ -148,7 +148,6 @@
 	</header>
 
 	<div id="main">
-
 		<%--images--%>
 		<div class="section">
 			<div class="container-fluid">

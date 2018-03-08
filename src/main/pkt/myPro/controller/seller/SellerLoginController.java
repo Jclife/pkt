@@ -32,15 +32,20 @@ public class SellerLoginController implements SellerPageManager{
     public Map login_check(String account, String password,HttpSession session){
         Map<String,String> result = new HashMap<String, String>();
         Store store = seller.getStoreInfo(account);
-        if (password.equals(store.getStore_password())){
-            result.put("status","success");
-                        if (session.getAttribute("userInfo")!=null){
-                session.removeAttribute("userInfo");
+        if (store!=null){
+            if (password.equals(store.getStore_password())){
+                result.put("status","success");
+                if (session.getAttribute("userInfo")!=null){
+                    session.removeAttribute("userInfo");
+                }
+                SessionUtils.setSessionAtt(session,store,"sellerInfo");
+            }else {
+                result.put("status","error");
             }
-        SessionUtils.setSessionAtt(session,store,"sellerInfo");
         }else {
             result.put("status","error");
         }
+
         return result;
     }
 

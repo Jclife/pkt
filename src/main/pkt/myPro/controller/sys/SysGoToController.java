@@ -235,11 +235,13 @@ public class SysGoToController implements SysPageManager {
         int scale = 2;
         int roundingMode = 4;
         List<Float> price = new ArrayList<Float>();
-        for (Integer i:tmpMap.keySet()) {
-            float tmpPrice = (tmpMap.get(i).getNum())*(tmpMap.get(i).getPrice());
-            BigDecimal bd = new BigDecimal((double)tmpPrice);
-            bd = bd.setScale(scale,roundingMode);
-            price.add(bd.floatValue());
+        if (tmpMap!=null){
+            for (Integer i:tmpMap.keySet()) {
+                float tmpPrice = (tmpMap.get(i).getNum())*(tmpMap.get(i).getPrice());
+                BigDecimal bd = new BigDecimal((double)tmpPrice);
+                bd = bd.setScale(scale,roundingMode);
+                price.add(bd.floatValue());
+            }
         }
         model.addAttribute("priceLists",price);
         List<HistoryGoods> historyGoods = service.getHistoryGoods(user.getUser_id());

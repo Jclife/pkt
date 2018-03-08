@@ -88,7 +88,6 @@ function click_register() {
         })
 
     }else {
-
         $("#register_password").val("");
         $("#repeat_password").val("");
         layer.msg("请输入重复相同密码");

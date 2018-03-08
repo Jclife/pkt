@@ -122,6 +122,11 @@
         WHERE user_id = #{user_id} AND goods_id = #{goods_id} AND com_id = #{com_id}
     </update>
 
+    <update id="modifyUserPass">
+        UPDATE user_tab SET user_password = #{password}
+        WHERE user_id = #{user_id}
+    </update>
+
     <select id="getShopComment" resultType="myPro.bean.sys.HistoryGoods">
         SELECT * FROM comment_tab WHERE goods_id = #{goods_id}
     </select>

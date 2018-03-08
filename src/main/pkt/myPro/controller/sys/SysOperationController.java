@@ -203,5 +203,16 @@ public class SysOperationController {
         return br?"ok":"error";
     }
 
-
+    @RequestMapping("modifyPass")
+    @ResponseBody
+    public String modifyPass(String oldPass,String newPass,HttpSession session){
+        String result ="error";
+        User user = (User) session.getAttribute("userInfo");
+        if (user.getUser_password().equals(oldPass)){
+            if (service.modifyPass(user.getUser_id(), newPass)){
+                result ="ok";
+            }
+        }
+        return  result;
+    }
 }

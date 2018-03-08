@@ -46,6 +46,7 @@
 							<c:choose>
 								<c:when test="${userName==null}">
 									<li>请先<a href="<%=basePath%>/pkt/login">登录</a></li>
+									<li><a href="<%=basePath%>/seller/login">卖家版</a></li>
 								</c:when>
 								<c:otherwise>
 									<li class="dropdown">
@@ -58,6 +59,7 @@
 											<li><a style="cursor:pointer;" onclick="quitLogin()">退出登录</a></li>
 										</ul>
 									</li>
+									<li><a href="<%=basePath%>/seller/login">卖家版</a></li>
 								</c:otherwise>
 							</c:choose>
 						</ul>
@@ -115,7 +117,6 @@
 											</li>
 										</c:forEach>
 									</ul>
-
 									<p class="total">
 										<strong>总计:</strong>
 										<span class="amount" id="addAllPrice">${addPrice}</span>
@@ -182,7 +183,7 @@
 										 data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
 											<img src="<%=basePath%>/resources/images/slider/slide_7.png" alt="" />
 									</div>
-									<a class="tp-caption btn-2 hidden-xs" href="#"
+									<a class="tp-caption btn-2 hidden-xs" href="<%=basePath%>/pkt/shop"
 										 data-x="['center','center','center','center']" 
 										 data-y="['center','center','center','center']" data-voffset="['260','260','260','260']"
 										 data-width="['auto']" data-height="['auto']"
@@ -328,7 +329,7 @@
 										<div class="pl-clock countdown-bar" data-time="2018/5/18"></div>
 									</div>
 								</div>
-								<a class="organik-btn brown" name="${result.get(0).goods.goods_id}" href="#">剁手</a>
+								<a class="organik-btn brown"  href="<%=basePath%>/pkt/shopDetail/${result.get(0).goods.goods_id}">剁手</a>
 							</div>
 						</div>
 						<div class="col-sm-6">

@@ -51,6 +51,7 @@ function getComment(item) {
                     offset: ['40%', '50%'],
                     anim: 6
                 });
+                window.location.reload();
             }
         },
         error:function () {
@@ -58,4 +59,40 @@ function getComment(item) {
         }
     });
 
+}
+
+function changePass() {
+    var oldPass = $("#oldPass").val();
+    var newPass = $("#newPass").val();
+    var repeatPass = $("#repeatPass").val();
+    if (newPass==repeatPass){
+        $.ajax({
+            url: '/pkt/modifyPass',
+            type: 'post',
+            async: true,
+            data: {
+                oldPass:oldPass,
+                newPass:newPass
+            },
+            success: function (data) {
+                if (data=="ok"){
+                    layer.msg('密码修改成功', {
+                        offset: ['40%', '50%'],
+                        anim: 6
+                    });
+                }
+            },
+            error:function () {
+
+            }
+        });
+    }else {
+        layer.msg('密码不一致，请重新输入', {
+            offset: ['40%', '50%'],
+            anim: 6
+        });
+        $("#oldPass").val('');
+        $("#newPass").val('');
+        $("#repeatPass").val('');
+    }
 }

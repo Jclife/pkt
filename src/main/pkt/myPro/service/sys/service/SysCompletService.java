@@ -70,4 +70,6 @@ public interface SysCompletService {
     User getUserToComment(int user_id);
 
     boolean saleGoodsCount(int goods_id,int num);
+
+    boolean modifyPass(int user_id,String password);
 }

@@ -339,4 +339,13 @@ public class SysCompletImpl implements SysCompletService {
             return false;
         }
     }
+
+    public boolean modifyPass(int user_id, String password) {
+        try {
+            completeDao.modifyUserPass(user_id,password);
+            return true;
+        }catch (Exception e){
+            return  false;
+        }
+    }
 }

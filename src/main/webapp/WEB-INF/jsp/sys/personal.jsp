@@ -301,17 +301,17 @@
 						<form action="" method="post">
 							<p>
 								<span>旧密码</span>
-								<input type="password"/>
+								<input type="password" id="oldPass"/>
 							</p>
 							<p>
 								<span>新密码</span>
-								<input type="password"/>
+								<input type="password" id="newPass"/>
 							</p>
 							<p>
 								<span>确认新密码</span>
-								<input type="password"/>
+								<input type="password" id="repeatPass"/>
 							</p>
-							<p class="per_info_btn">保存</p>
+							<p class="per_info_btn" onclick="changePass()">保存</p>
 						</form>
 					</div>
 				</div>

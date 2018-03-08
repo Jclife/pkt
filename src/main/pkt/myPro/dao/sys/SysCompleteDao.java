@@ -46,4 +46,6 @@ public interface SysCompleteDao {
     User getUserInfo(@Param("user_id") int user_id);
 
     void saleGoodsCount(@Param("goods_id") int goods_id,@Param("num") int num);
+
+    void modifyUserPass(@Param("user_id") int user_id,@Param("password") String password);
 }

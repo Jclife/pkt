@@ -33,32 +33,38 @@ function closePop(item) {
 
 function getComment(item) {
     var text = $(item).parent().find("input:eq(0)").val();
-    $(item).parent().parent().hide();
-    var id = $(item).parent().find("input:eq(0)").attr("tid");
-    var com_id = $(item).parent().find("input:eq(0)").attr("cid");
-    $.ajax({
-        url: '/pkt/addComment',
-        type: 'post',
-        async: true,
-        data: {
-            text:text,
-            goods_id:id,
-            com_id:com_id
-        },
-        success: function (data) {
-            if (data=="ok"){
-                layer.msg('评论添加成功', {
-                    offset: ['40%', '50%'],
-                    anim: 6
-                });
-                window.location.reload();
+    if(text==null||text==undefined||text==''){
+        layer.msg('请添加评论内容', {
+            offset: ['40%', '50%'],
+            anim: 6
+        });
+    }else {
+        $(item).parent().parent().hide();
+        var id = $(item).parent().find("input:eq(0)").attr("tid");
+        var com_id = $(item).parent().find("input:eq(0)").attr("cid");
+        $.ajax({
+            url: '/pkt/addComment',
+            type: 'post',
+            async: true,
+            data: {
+                text:text,
+                goods_id:id,
+                com_id:com_id
+            },
+            success: function (data) {
+                if (data=="ok"){
+                    layer.msg('评论添加成功', {
+                        offset: ['40%', '50%'],
+                        anim: 6
+                    });
+                    window.location.reload();
+                }
+            },
+            error:function () {
+
             }
-        },
-        error:function () {
-
-        }
-    });
-
+        });
+    }
 }
 
 function changePass() {

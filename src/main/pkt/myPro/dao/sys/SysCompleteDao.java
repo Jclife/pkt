@@ -48,4 +48,8 @@ public interface SysCompleteDao {
     void saleGoodsCount(@Param("goods_id") int goods_id,@Param("num") int num);
 
     void modifyUserPass(@Param("user_id") int user_id,@Param("password") String password);
+
+    List<Goods> searchLists(@Param("goodsName") String goodsName);
+
+    List<Goods> searchLikeLists(@Param("goodsName") String goodsName,@Param("limit") int limit,@Param("last") int last);
 }

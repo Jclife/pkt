@@ -74,8 +74,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12">
-						<form>
-							<input type="search" class="top-search-input" name="s" placeholder="想吃点什么?请输入..." />
+						<form onkeydown="if(event.keyCode==13) return searchGoods()">
+							<input type="search" id="searchValue" onchange="searchGoods()" name="goods" class="top-search-input" placeholder="想吃点什么?请输入..." />
 						</form>
 					</div>
 				</div>
@@ -148,15 +148,6 @@
 		</div>
 	</header>
 	<div id="main">
-		<div class="section section-bg-10 pt-11 pb-17">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<h2 class="page-title text-center">商品列表</h2>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="section border-bottom pt-2 pb-2">
 			<div class="container">
 				<div class="row">
@@ -272,35 +263,14 @@
 					</div>
 					<div class="col-md-3 col-md-pull-9">
 						<div class="sidebar">
-							<div class="widget widget-product-search">
-								<form class="form-search">
-									<input type="text" id="searchValue" class="search-field" placeholder="输入查询商品" value="" name="s" />
-									<input type="submit" value="Search"/>
-								</form>
-							</div>
 							<div class="widget widget-product-categories">
 								<h3 class="widget-title">Product Categories</h3>
 								<ul class="product-categories">
-									<li><a href="#">荤菜</a> <span class="count">${number.meatNum}</span></li>
-									<li><a href="#">汤类</a> <span class="count">${number.soupNum}</span></li>
-									<li><a href="#">小炒</a> <span class="count">${number.starchNum}</span></li>
-									<li><a href="#">火锅</a> <span class="count">${number.hotPotNum}</span></li>
+									<li><a href="<%=basePath%>/pkt/shop/1/1/6">荤菜</a> <span class="count">${number.meatNum}</span></li>
+									<li><a href="<%=basePath%>/pkt/shop/2/1/6">汤类</a> <span class="count">${number.soupNum}</span></li>
+									<li><a href="<%=basePath%>/pkt/shop/3/1/6">小炒</a> <span class="count">${number.starchNum}</span></li>
+									<li><a href="<%=basePath%>/pkt/shop/4/1/6">火锅</a> <span class="count">${number.hotPotNum}</span></li>
 								</ul>
-							</div>
-							<div class="widget widget_price_filter">
-								<h3 class="widget-title">价格区间</h3>
-								<div class="price_slider_wrapper">
-									<div class="price_slider" style="display:none;"></div>
-									<div class="price_slider_amount">
-										<input type="text" id="min_price" name="min_price" value="" data-min="0" placeholder="Min price">
-										<input type="text" id="max_price" name="max_price" value="" data-max="1000" placeholder="Max price">
-										<button class="button">查询</button>
-										<div class="price_label" style="display:none;">
-											价格: <span class="from"></span> &mdash; <span class="to"></span>
-										</div>
-										<div class="clear"></div>
-									</div>
-								</div>
 							</div>
 							<div class="widget widget-products">
 								<h3 class="widget-title">其他产品</h3>
@@ -356,9 +326,8 @@
 						<h3 class="widget-title">信息</h3>
 						<ul>
 							<li><a href="#">新产品</a></li>
-							<li><a href="#">热卖榜</a></li>
-							<li><a href="#">社区</a></li>
-							<li><a href="#">我的购物车</a></li>
+							<li><a href="<%=basePath%>/pkt/shop">热卖榜</a></li>
+							<li><a href="<%=basePath%>/pkt/cart">我的购物车</a></li>
 						</ul>
 					</div>
 				</div>
@@ -369,7 +338,6 @@
 							<li><a href="<%=basePath%>/pkt/about">关于我们</a></li>
 							<li><a href="#">我们的团队</a></li>
 							<li><a href="<%=basePath%>/pkt/about">关于我们</a></li>
-							<li><a href="#">随便写的</a></li>
 						</ul>
 					</div>
 				</div>

@@ -112,7 +112,7 @@
     </div>
     <div class="col-md-12 padding-0 form-element">
       <div class="col-md-12">
-       <div class="panel form-element-padding">
+        <div class="panel form-element-padding">
             <div class="panel-heading">
               <h4>查询条件</h4>
             </div>
@@ -151,12 +151,13 @@
                     <table class="table table-striped table-bordered dataTable no-footer" width="100%" cellspacing="0"  style="width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th class="sorting_asc"style="width: 60px;">商品名称</th>
-                          <th class="sorting" style="width: 60px;">原价</th>
-                          <th class="sorting" style="width: 60px;">促销价格</th>
-                          <th class="sorting" style="width: 60px;">类型</th>
-                          <th class="sorting" style="width: 60px;">数量</th>
-                          <th class="sorting"  style="width: 60px;">售出</th>
+                          <th class="sorting"style="width:22%;">商品名称</th>
+                          <th class="sorting" style="width:13%;">原价</th>
+                          <th class="sorting" style="width:13%;">促销价格</th>
+                          <th class="sorting" style="width:13%;">类型</th>
+                          <th class="sorting" style="width:13%;">数量</th>
+                          <th class="sorting" style="width:13%;">售出</th>
+                          <th class="sorting" style="width:13%;">售出</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -186,24 +187,24 @@
                               </c:choose>
                               <td>${item.goods_count}</td>
                               <td>${item.goods_sale_count}</td>
+                              <td><button type="button" class="btn btn-primary" onclick="operaMethod(this)" id="${item.goods_id}">操作</button></td>
                             </tr>
                         </c:forEach>
                       </tbody>
                     </table>
                     <div id="page" style="padding:0 25%;"></div>
                   </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
-    </div>
+      </div>
   </div>
+</div>
   <!-- end: content -->
 
-
-</div>
 <!-- start: Javascript -->
 <script src="<%=basePath%>/resources/asset/js/jquery.min.js"></script> 
 <script src="<%=basePath%>/resources/asset/js/jquery.ui.min.js"></script> 

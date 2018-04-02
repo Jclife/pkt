@@ -215,4 +215,12 @@ public class SysOperationController {
         }
         return  result;
     }
+
+    @RequestMapping("search_exit")
+    @ResponseBody
+    public String searchExit(String goods){
+        List<Goods> searchGoods;
+        searchGoods = service.searchLists(goods);
+        return searchGoods.size()>0?"success":"error";
+    }
 }

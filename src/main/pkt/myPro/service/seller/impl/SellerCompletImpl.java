@@ -116,5 +116,34 @@ public class SellerCompletImpl implements SellerCompletService{
         return bL;
     }
 
+    public Goods getModifyGoods(int goods_id) {
+        return seller.modifyGoods(goods_id);
+    }
 
+    public boolean modifyBase(Goods goods) {
+        try {
+            seller.modifyBaseGood(goods);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public boolean modifyPic(int goods_id, String imgJson) {
+        try {
+            seller.modifyPicGood(goods_id,imgJson);
+            return true;
+        }catch (Exception e){
+            return  false;
+        }
+    }
+
+    public boolean deleteGood(int goods_id) {
+        try {
+            seller.deleteGood(goods_id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 }

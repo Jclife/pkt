@@ -32,4 +32,12 @@ public interface SellerCompletService {
     List<Goods> hotSaleList(int store_id);
 
     List<Map<String,Object>> moneySaleList(int store_id);
+
+    Goods getModifyGoods(int goods_id);
+
+    boolean modifyBase(Goods goods);
+
+    boolean modifyPic(int goods_id,String imgJson);
+
+    boolean deleteGood(int goods_id);
 }

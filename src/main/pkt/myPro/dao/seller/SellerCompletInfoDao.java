@@ -30,4 +30,12 @@ public interface SellerCompletInfoDao {
     List<Goods> hotSaleList(int store_id);
 
     List<Goods> moneySaleList(int store_id);
+
+    Goods modifyGoods(int goods_id);
+;
+    void modifyBaseGood(Goods goods);
+
+    void modifyPicGood(@Param("goods_id") int goods_id,@Param("imgJson") String imgJson);
+
+    void deleteGood(int goods_id);
 }

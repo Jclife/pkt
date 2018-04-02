@@ -74,8 +74,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12">
-						<form>
-							<input type="search" class="top-search-input" name="s" placeholder="想吃点什么?请输入..." />
+						<form onkeydown="if(event.keyCode==13) return searchGoods()">
+							<input type="search" id="searchValue" onchange="searchGoods()" name="goods" class="top-search-input" placeholder="想吃点什么?请输入..." />
 						</form>
 					</div>
 				</div>
@@ -111,15 +111,6 @@
 		</div>
 	</header>
 	<div id="main">
-		<div class="section section-bg-10 pt-11 pb-17">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<h2 class="page-title text-center">结账</h2>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="section border-bottom pt-2 pb-2">
 			<div class="container">
 				<div class="row">

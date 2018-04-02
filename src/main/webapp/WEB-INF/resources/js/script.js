@@ -45,6 +45,7 @@
 	});
 	
 	$(document).ready(function($) {
+
 		/* Search */
 		var topSearch = $('.top-search');
 		$('.top-search-btn').on('click', function() {

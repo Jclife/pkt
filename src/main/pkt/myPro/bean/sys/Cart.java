@@ -6,7 +6,7 @@ import java.sql.Timestamp;
  * @author liujun
  * @Title:
  * @Package
- * @Description:
+ * @Description: 购物车
  * @date 2018/2/25  11:26
  */
 public class Cart {

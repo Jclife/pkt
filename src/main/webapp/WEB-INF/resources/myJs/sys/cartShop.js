@@ -235,3 +235,10 @@ function remind() {
         anim: 6
     });
 }
+
+
+function getFindPrice() {
+    var from = $(".from").text();
+    var to = $(".to").text();
+    console.log(from+"     to    "+to)
+}

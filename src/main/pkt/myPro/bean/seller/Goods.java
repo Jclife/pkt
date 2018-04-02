@@ -4,7 +4,7 @@ package myPro.bean.seller;
  * @author liujun
  * @Title:
  * @Package
- * @Description:商品类
+ * @Description:商品表
  * @date 2018/2/3  22:20
  */
 public class Goods {

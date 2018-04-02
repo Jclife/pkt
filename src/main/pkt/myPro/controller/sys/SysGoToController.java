@@ -101,9 +101,10 @@ public class SysGoToController implements SysPageManager {
     @RequestMapping("shop")
     public String to_shop(HttpSession session, Model model){
         User user = (User) session.getAttribute("userInfo");
+        List<ShopPo> allList = service.getShopLists(-1,-1,0,0);
         List<ShopPo> list = service.getShopLists(6,-1,0,0);
         List<ShopPo> otherGoods = service.getShopLists(5,-1,1,0);
-        Map<String,Integer> NumResult = service.numberResultShop(list,5);
+        Map<String,Integer> NumResult = service.numberResultShop(allList,5);
         List<Goods> allGoods=list.get(0).getAllList();
         List<List<String>> jsonList = new ArrayList<List<String>>();
         List<GoodsPo> resultList = service.setImgJsonInIndex(jsonList,allGoods);
@@ -132,6 +133,7 @@ public class SysGoToController implements SysPageManager {
                                      @PathVariable("type") int type,
                                      @PathVariable("page") int page,
                                      @PathVariable("limit") int limit){
+
         //得到所有的商品信息
         List<ShopPo> allList = service.getShopLists(-1,-1,0,0);
         List<ShopPo> typeList = service.getShopLists((limit*(page-1)),limit,0,0);
@@ -161,9 +163,30 @@ public class SysGoToController implements SysPageManager {
         List<List<String>> jsonList = new ArrayList<List<String>>();
         List<GoodsPo> resultList = service.setImgJsonInIndex(jsonList,tmpGoods);
         model.addAttribute("result",resultList);
-        System.out.println(resultList.size()+"   all");
         model.addAttribute("otherResultList",otherResultList);
         model.addAttribute("number",NumResult);
+        User user = (User) session.getAttribute("userInfo");
+        Map<Integer,CartPo> sessionMap = (Map<Integer, CartPo>) session.getAttribute("cartMap");//购物车session
+        service.addShopCartMethod(user,service,sessionMap,model,session);
+        return SHOP;
+    }
+
+    @RequestMapping(value = "search/{goodsName}")
+    public String to_shop_conditions(HttpSession session, Model model,
+                                     @PathVariable("goodsName") String goodsName){
+        List<Goods> searchGoods;
+        searchGoods = service.searchLists(goodsName);
+        List<List<String>> jsonList = new ArrayList<List<String>>();
+        List<GoodsPo> resultList = service.setImgJsonInIndex(jsonList,searchGoods);
+        List<ShopPo> otherGoods = service.getShopLists(5,-1,1,0);
+        List<Goods> otherList=otherGoods.get(0).getAllList();
+        List<List<String>> otherJsonList = new ArrayList<List<String>>();
+        List<GoodsPo> otherResultList = service.setImgJsonInIndex(otherJsonList,otherList);
+        model.addAttribute("otherResultList",otherResultList);
+        model.addAttribute("result",resultList);
+        Map<String,Integer> numberMap = new HashMap<String, Integer>();
+        numberMap.put("allNum",searchGoods.size());
+        model.addAttribute("number",numberMap);
         User user = (User) session.getAttribute("userInfo");
         Map<Integer,CartPo> sessionMap = (Map<Integer, CartPo>) session.getAttribute("cartMap");//购物车session
         service.addShopCartMethod(user,service,sessionMap,model,session);
@@ -243,20 +266,22 @@ public class SysGoToController implements SysPageManager {
                 price.add(bd.floatValue());
             }
         }
-        model.addAttribute("priceLists",price);
         List<HistoryGoods> historyGoods = service.getHistoryGoods(user.getUser_id());
         List<Integer> goods_idList = new ArrayList<Integer>();
-        Map<Integer,HisCartPo> result = new HashMap<Integer, HisCartPo>();
+        List<HisCartPo> result = new ArrayList<HisCartPo>();
         for (int i = 0; i < historyGoods.size() ; i++) {
             goods_idList.add(historyGoods.get(i).getGoods_id());
         }
         List<Goods> getGoods = new ArrayList<Goods>();
         for (int i = 0; i <goods_idList.size() ; i++) {
-            getGoods.add(service.getGoodsInId(goods_idList.get(i)));
+            System.out.println(goods_idList.get(i)+"  000000");
+            Goods tmpGood = service.getGoodsInId(goods_idList.get(i));
+            System.out.println(tmpGood.toString());
+            getGoods.add(tmpGood);
         }
         List<List<String>> jsonList = new ArrayList<List<String>>();
         List<GoodsPo> imgList = service.setImgJsonInIndex(jsonList,getGoods);
-        for (int i = 0; i <getGoods.size() ; i++) {
+        for (int i = getGoods.size()-1; i >=0 ; i--) {
             HisCartPo cartPo = new HisCartPo();
             cartPo.setNum(historyGoods.get(i).getGoods_count());
             cartPo.setImgs(imgList.get(i).getList().get(0));
@@ -265,17 +290,19 @@ public class SysGoToController implements SysPageManager {
             cartPo.setId(getGoods.get(i).getGoods_id());
             cartPo.setContent(historyGoods.get(i).getContent());
             cartPo.setCom_id(historyGoods.get(i).getCom_id());
-            result.put(historyGoods.get(i).getCom_id(),cartPo);
+            result.add(cartPo);
         }
         List<Float> hisPrice = new ArrayList<Float>();
-        for (Integer i:result.keySet()) {
-            float tmpPrice = (result.get(i).getNum())*(result.get(i).getPrice());
+        for (int i = 0; i < result.size(); i++) {
+            float tmpPrice= (result.get(i).getNum())*(result.get(i).getPrice());
             BigDecimal bd = new BigDecimal((double)tmpPrice);
             bd = bd.setScale(scale,roundingMode);
             hisPrice.add(bd.floatValue());
         }
+        model.addAttribute("priceLists",price);
         model.addAttribute("hisPrice",hisPrice);
         model.addAttribute("histCart",result);
+        model.addAttribute("number",result.size());
         return PERSIONAL;
     }
 

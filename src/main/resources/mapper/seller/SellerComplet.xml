@@ -85,5 +85,27 @@
         SELECT * FROM goods_tab WHERE store_id = #{store_id}  ORDER BY (goods_sale_count*goods_price_now) DESC ;
     </select>
 
+    <select id="modifyGoods" resultMap="goodsMap">
+        SELECT * FROM goods_tab WHERE goods_id = #{goods_id}
+    </select>
 
+    <update id="modifyBaseGood" parameterType="myPro.bean.seller.Goods">
+        UPDATE  goods_tab
+        SET goods_name = #{goods_name,jdbcType=VARCHAR},
+            goods_price = #{goods_price,jdbcType=FLOAT},
+            goods_price_now = #{goods_price_now,jdbcType=FLOAT},
+            goods_count = #{goods_count,jdbcType=INTEGER},
+            goods_origin = #{goods_origin,jdbcType=VARCHAR} ,
+            goods_classify = #{goods_classify,jdbcType=VARCHAR},
+            goods_desc = #{goods_desc,jdbcType=VARCHAR}
+        WHERE goods_id = #{goods_id}
+    </update>
+
+    <update id="modifyPicGood">
+        UPDATE  goods_tab SET goods_imgs=#{imgJson,jdbcType=VARCHAR} WHERE goods_id = #{goods_id}
+    </update>
+
+    <delete id="deleteGood">
+        DELETE FROM goods_tab WHERE goods_id = #{goods_id,jdbcType=INTEGER}
+    </delete>
 </mapper>

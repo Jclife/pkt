@@ -6,7 +6,7 @@ import java.util.List;
  * @author liujun
  * @Title:
  * @Package
- * @Description:
+ * @Description: 商品表封装
  * @date 2018/2/23  12:02
  */
 public class GoodsPo {

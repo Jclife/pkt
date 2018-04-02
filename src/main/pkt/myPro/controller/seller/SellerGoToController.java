@@ -157,6 +157,20 @@ public class SellerGoToController implements SellerPageManager{
         return REGISTER;
     }
 
+    @RequestMapping(value = "modify/{id}")
+    public String modifyGoods(@PathVariable("id") int id,Model model,HttpSession session){
 
+        Store store = (Store) session.getAttribute("sellerInfo");
+        if (store!=null&&store.getStore_name()!=null){
+            Goods modifyGood=service.getModifyGoods(id);
+            System.out.println(modifyGood.toString());
+            setModel(model,store);
+            model.addAttribute("modifyGood",modifyGood);
+            return MODIFY_GOODS;
+        }else {
+            return REDIRECT_LOGIN;
+        }
+
+    }
 
 }

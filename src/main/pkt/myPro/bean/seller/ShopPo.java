@@ -6,7 +6,7 @@ import java.util.List;
  * @author liujun
  * @Title:
  * @Package
- * @Description:
+ * @Description: 分类商品列表
  * @date 2018/2/23  17:33
  */
 public class ShopPo {
@@ -21,6 +21,25 @@ public class ShopPo {
 
     List<Goods> starchList;
 
+    List<Goods> searchList;
+
+    List<Goods> likeList;
+
+    public List<Goods> getSearchList() {
+        return searchList;
+    }
+
+    public void setSearchList(List<Goods> searchList) {
+        this.searchList = searchList;
+    }
+
+    public List<Goods> getLikeList() {
+        return likeList;
+    }
+
+    public void setLikeList(List<Goods> likeList) {
+        this.likeList = likeList;
+    }
 
     public List<Goods> getAllList() {
         return allList;

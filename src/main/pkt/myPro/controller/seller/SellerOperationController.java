@@ -64,7 +64,6 @@ public class SellerOperationController {
         if (service.completSeller(store)){
             map.put("status","success");
             session.setAttribute("sellerInfo",store);
-            System.out.println("  subInfo update  "+store.toString());
         }else {
             map.put("status","error");
         }
@@ -86,6 +85,34 @@ public class SellerOperationController {
         return map;
     }
 
+    @RequestMapping("modifyBase")
+    @ResponseBody
+    public String modifyBase(Goods goods){
+        if (service.modifyBase(goods)){
+            return "success";
+        }else {
+            return "error";
+        }
+    }
 
+    @RequestMapping("modifyPic")
+    @ResponseBody
+    public String modifyPic(String imgJson,int id){
+        if (service.modifyPic(id,imgJson)){
+            return "success";
+        }else {
+            return "error";
+        }
+    }
+
+    @RequestMapping("deleteGood")
+    @ResponseBody
+    public String deleteGood(int id){
+        boolean br = false;
+        if (service.deleteGood(id)){
+            br = true;
+        }
+        return br?"success":"error";
+    }
 
 }

@@ -75,8 +75,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12">
-						<form>
-							<input type="search" class="top-search-input" name="s" placeholder="想吃点什么?请输入..." />
+						<form onkeydown="if(event.keyCode==13) return searchGoods()">
+							<input type="search" id="searchValue" onchange="searchGoods()" name="goods" class="top-search-input" placeholder="想吃点什么?请输入..." />
 						</form>
 					</div>
 				</div>
@@ -149,15 +149,6 @@
 		</div>
 	</header>
 	<div id="main">
-		<div class="section section-bg-10 pt-11 pb-17">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<h2 class="page-title text-center">商品详情</h2>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="section border-bottom pt-2 pb-2">
 			<div class="container">
 				<div class="row">
@@ -219,6 +210,9 @@
 												<ins>¥ ${goods.goods_price_now}</ins>
 											</c:otherwise>
 										</c:choose>
+									</div>
+									<div class="mb-3">
+										<p id="remain_num" remainNum="${goods.goods_count-goods.goods_sale_count}">剩余${goods.goods_count-goods.goods_sale_count}</p>
 									</div>
 									<div class="mb-3">
 										<p>${goods.goods_desc}</p>
@@ -373,12 +367,6 @@
 					</div>
 					<div class="col-md-3 col-md-pull-9">
 						<div class="sidebar">
-							<div class="widget widget-product-search">
-								<form class="form-search">
-									<input type="text" class="search-field" placeholder="Search products…" value="" name="s" />
-									<input type="submit" value="Search" />
-								</form>
-							</div>
 							<div class="widget widget-product-categories">
 								<h3 class="widget-title">商品分类</h3>
 								<ul class="product-categories">

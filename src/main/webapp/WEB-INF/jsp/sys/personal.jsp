@@ -12,7 +12,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 <title>Shop</title>
-
 <link rel="stylesheet" href="<%=basePath%>/resources/css/bootstrap.min.css" type="text/css" media="all">
 <link rel="stylesheet" href="<%=basePath%>/resources/css/font-awesome.min.css" type="text/css" media="all" />
 <link rel="stylesheet" href="<%=basePath%>/resources/css/ionicons.min.css" type="text/css" media="all" />
@@ -75,8 +74,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12">
-						<form>
-							<input type="search" class="top-search-input" name="s" placeholder="想吃点什么?请输入..." />
+						<form onkeydown="if(event.keyCode==13) return searchGoods()">
+							<input type="search" id="searchValue" onchange="searchGoods()" name="goods" class="top-search-input" placeholder="想吃点什么?请输入..." />
 						</form>
 					</div>
 				</div>
@@ -149,15 +148,6 @@
 		</div>
 	</header>
 	<div id="main">
-		<div class="section section-bg-10 pt-11 pb-17">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<h2 class="page-title text-center">个人中心</h2>
-					</div>
-				</div>
-			</div>
-		</div>
 		<div class="section pt-7 pb-7">
 			<div class="container">
 				<div class="personal">
@@ -211,39 +201,47 @@
 							</ul>
 						</c:forEach>
 					</div>
-					<div class="per_box" style="display: none;">
+					<div class="per_box" style="display: none;width: 80%;margin-left: 5%;">
 						<ul class="layui-timeline" >
-							<c:forEach items="${histCart}" var="mymap" varStatus="num">
+							<ul class="per_navul">
+								<li style="width: 20%">
+									图片
+								</li>
+								<li style="width: 20%">名称</li>
+								<li style="width: 20%">数量*价格</li>
+								<li style="width: 20%">合计</li>
+								<li style="width: 20%">评论</li>
+							</ul>
+							<c:forEach items="${histCart}" var="hisList" varStatus="num">
 								<ul class="per_listul">
 									<li style="width: 20%">
-										<img src="http://123.207.250.128:8888/${mymap.value.imgs}" style="vertical-align: middle;height: 80px;width: 80px"/>
+										<img src="http://123.207.250.128:8888/${hisList.imgs}" style="vertical-align: middle;height: 80px;width: 80px"/>
 									</li>
-									<li style="width: 20%">${mymap.value.name}</li>
-									<li style="width: 20%">${mymap.value.num}  *  ¥${mymap.value.price}</li>
+									<li style="width: 20%">${hisList.name}</li>
+									<li style="width: 20%">${hisList.num}  *  ¥${hisList.price}</li>
 									<li style="width: 20%">¥${hisPrice[num.count-1]}</li>
 									<li style="width: 20%">
 										<c:choose>
-											<c:when test="${mymap.value.content==null}">
+											<c:when test="${hisList.content==null}">
 												<p class="popover-options" style="margin-top: 14px">
 													<a  onclick="closePop(this)" type="button" class="btn btn-success" title="<h4>添加评论</h4>"
 														data-container="body" data-toggle="popover"
-														data-content="<input type='text' tid='${mymap.value.id}' cid='${mymap.value.com_id}' class='form-control' style='width:248px;height:146px'>
+														data-content="<input type='text' tid='${hisList.id}' cid='${hisList.com_id}' class='form-control' style='width:248px;height:146px'>
 											            <button class='btn btn-info btn-sm' onclick='getComment(this)' style='margin: 5 32%;'>确定添加</button>">
 														添加评论
 													</a>
 												</p>
 											</c:when>
-											<c:when test="${mymap.value.content!=null}">
+											<c:when test="${hisList.content!=null}">
 												<p class="popover-options" style="margin-top: 14px">
 													<a  onclick="closePop(this)" type="button" class="btn btn-success" title="<h4>查看评论</h4>"
 														data-container="body" data-toggle="popover"
-														data-content="<input type='text' value='${mymap.value.content}' class='form-control' style='width:248px;height:146px'>">
+														data-content="<input type='text' value='${hisList.content}' class='form-control' style='width:248px;height:146px'>">
 														查看评论
 													</a>
 												</p>
 											</c:when>
 										</c:choose>
-
 									</li>
 								</ul>
 							</c:forEach>
@@ -403,5 +401,6 @@
 <script type="text/javascript" src="<%=basePath%>/resources/js/jquery.ui.touch-punch.js"></script>
 <script type="text/javascript" src="<%=basePath%>/resources/js/price-slider.js"></script>
 <script type="text/javascript" src="<%=basePath%>/resources/myJs/sys/personal.js"></script>
+<script type="text/javascript" src="<%=basePath%>/resources/myJs/sys/cartShop.js"></script>
 </body>
 </html>

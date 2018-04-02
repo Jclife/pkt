@@ -46,3 +46,10 @@ function findGoods() {
     var url = "/seller/find/"+content+"/"+type+"/1/6";
     $(location).prop('href', url);
 }
+
+function operaMethod(item) {
+    var id = $(item).attr("id");
+    console.log(id);
+    var url = "/seller/modify/"+id;
+    $(location).prop('href', url);
+}

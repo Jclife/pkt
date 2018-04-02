@@ -16,7 +16,7 @@ public interface SellerPageManager {
     String LOGIN = "seller/login";
     String REGISTER = "seller/register";
     String PERFECT = "seller/perfect";
-    String FIND_LIST="seller/find_list";
+    String MODIFY_GOODS="seller/modify";
 
 
     String REDIRECT_INDEX="redirect:/seller/index";
@@ -26,5 +26,4 @@ public interface SellerPageManager {
     String REDIRECT_LOGIN="redirect:/seller/login";
     String REDIRECT_REGISTER="redirect:/seller/register";
     String REDIRECT_PERFECT="redirect:/seller/perfect";
-    String REDIRECT_FIND_LIST="redirect:/seller/find";
 }

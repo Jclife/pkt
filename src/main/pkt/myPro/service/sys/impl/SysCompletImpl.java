@@ -348,4 +348,14 @@ public class SysCompletImpl implements SysCompletService {
             return  false;
         }
     }
+
+    public List<Goods> searchLists(String goodsName) {
+        List<Goods> goods = completeDao.searchLists(goodsName);
+        return goods==null?null:goods;
+    }
+
+    public List<Goods> searchLikeLists(String goodsName,int limit,int last){
+        List<Goods> goods = completeDao.searchLikeLists(goodsName,-1,-1);
+        return goods;
+    }
 }

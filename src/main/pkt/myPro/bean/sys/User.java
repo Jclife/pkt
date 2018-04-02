@@ -2,8 +2,8 @@ package myPro.bean.sys;
 
 /**
  * @author liujun
- * @Title: UserTest
- * @Package com.neusoft.bean
+ * @Title:
+ * @Package
  * @Description: 用户实体类
  * @date 2018/2/1 21:15
  */

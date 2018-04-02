@@ -72,4 +72,7 @@ public interface SysCompletService {
     boolean saleGoodsCount(int goods_id,int num);
 
     boolean modifyPass(int user_id,String password);
+
+    List<Goods> searchLists(String goodsName);
+    List<Goods> searchLikeLists(String goodsName,int limit,int last);
 }

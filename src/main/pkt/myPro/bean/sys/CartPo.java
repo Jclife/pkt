@@ -4,7 +4,7 @@ package myPro.bean.sys;
  * @author liujun
  * @Title:
  * @Package
- * @Description:
+ * @Description: 购物车封装
  * @date 2018/2/24  15:15
  */
 public class CartPo {

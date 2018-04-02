@@ -140,4 +140,24 @@
         WHERE goods_id = #{goods_id}
     </update>
 
+
+    <select id="searchLists" resultMap="goodsMap">
+        SELECT * FROM goods_tab WHERE goods_name = #{goodsName};
+    </select>
+
+    <select id="searchLikeLists" resultMap="goodsMap">
+        SELECT * FROM goods_tab WHERE goods_name LIKE '%'#{goodsName}'%' ORDER BY goods_sale_count DESC
+        <choose>
+            <when test="limit!=-1">
+                limit #{limit}
+            </when>
+            <otherwise></otherwise>
+        </choose>
+        <choose>
+            <when test="last!=-1">
+                ,#{last}
+            </when>
+            <otherwise></otherwise>
+        </choose>
+    </select>
 </mapper>

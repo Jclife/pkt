@@ -74,8 +74,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-12">
-						<form>
-							<input type="search" class="top-search-input" name="s" placeholder="想吃点什么?请输入..." />
+						<form onkeydown="if(event.keyCode==13) return searchGoods()">
+							<input type="search" id="searchValue" onchange="searchGoods()" name="goods" class="top-search-input" placeholder="想吃点什么?请输入..." />
 						</form>
 					</div>
 				</div>
@@ -150,80 +150,14 @@
 
 	<div id="main">
 		<%--images--%>
-		<div class="section">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-sm-12 p-0">
-						<div id="rev_slider" class="rev_slider fullscreenbanner">
-							<ul>
-								<li data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-rotate="0" data-saveperformance="off" data-title="换页">
-									<img src="<%=basePath%>/resources/images/slider/slide_bg_4.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" />
-									<div class="tp-caption rs-parallaxlevel-2"
-										 data-x="center" data-hoffset=""
-										 data-y="center" data-voffset="-80"
-										 data-width="['none','none','none','none']"
-										 data-height="['none','none','none','none']"
-										 data-type="image" data-responsive_offset="on"
-										 data-frames='[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-										 data-textAlign="['inherit','inherit','inherit','inherit']"
-										 data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]"
-										 data-paddingbottom="[0,0,0,0]"
-										 data-paddingleft="[0,0,0,0]">
-											<img src="<%=basePath%>/resources/images/slider/slide_6.png" alt="" />
-									</div>
-									<div class="tp-caption rs-parallaxlevel-1"
-										 data-x="center" data-hoffset=""
-										 data-y="center" data-voffset="-80"
-										 data-width="['none','none','none','none']"
-										 data-height="['none','none','none','none']"
-										 data-type="image" data-responsive_offset="on"
-										 data-frames='[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-										 data-textAlign="['inherit','inherit','inherit','inherit']"
-										 data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]"
-										 data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-											<img src="<%=basePath%>/resources/images/slider/slide_7.png" alt="" />
-									</div>
-									<a class="tp-caption btn-2 hidden-xs" href="<%=basePath%>/pkt/shop"
-										 data-x="['center','center','center','center']" 
-										 data-y="['center','center','center','center']" data-voffset="['260','260','260','260']"
-										 data-width="['auto']" data-height="['auto']"
-										 data-type="button" data-responsive_offset="on"
-										 data-responsive="off"
-										 data-frames='[{"delay":0,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"},{"frame":"hover","speed":"300","ease":"Power0.easeIn","to":"o:1;rX:0;rY:0;rZ:0;z:0;","style":"c:rgb(95,189,116);bg:rgba(51, 51, 51, 0);"}]'
-										 data-textAlign="['inherit','inherit','inherit','inherit']"
-										 data-paddingtop="[16,16,16,16]" data-paddingright="[30,30,30,30]"
-										 data-paddingbottom="[16,16,16,16]" data-paddingleft="[30,30,30,30]">开始购物
-									</a>
-								</li>
-								<li data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-rotate="0" data-saveperformance="off" data-title="换页">
-									<img src="<%=basePath%>/resources/images/slider/slide_bg_5.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="off" class="rev-slidebg" />
-									<div class="tp-caption rs-parallaxlevel-1"
-										 data-x="center" data-hoffset=""
-										 data-y="center" data-voffset="-120"
-										 data-width="['none','none','none','none']"
-										 data-height="['none','none','none','none']"
-										 data-type="image" data-responsive_offset="on"
-										 data-frames='[{"delay":0,"speed":1500,"frame":"0","from":"z:0;rX:0;rY:0;rZ:0;sX:0.9;sY:0.9;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-										 data-textAlign="['inherit','inherit','inherit','inherit']"
-										 data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]"
-										 data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]">
-											<img src="<%=basePath%>/resources/images/slider/slide_8.png" alt="" />
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
 		<%--all produces--%>
 		<div class="section pt-12 pb-9">
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-12">
-							<div class="text-center mb-1 section-pretitle">发现</div>
-							<h2 class="text-center section-title mtn-2">更多产品</h2>
+							<div class="text-center mb-1 section-pretitle">热卖</div>
+							<h2 class="text-center section-title mtn-2">榜单菜品</h2>
 							<div class="organik-seperator center">
 								<span class="sep-holder"><span class="sep-line"></span></span>
 								<div class="sep-icon"><i class="organik-flower"></i></div>
@@ -319,10 +253,10 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="text-center">
-								<div class="mb-1 section-pretitle white">热卖促销商品</div>
-								<h2 class="section-title mtn-2 mb-3">来自自然的馈赠</h2>
+								<div class="mb-1 section-pretitle white">热卖榜首菜品</div>
+								<h2 class="section-title mtn-2 mb-3">限时促销折扣</h2>
 								<p class="white mb-4">
-									这是热卖促销专栏
+									${result.get(0).goods.goods_desc}
 								</p>
 								<div class="countdown-wrap mb-4">
 									<div class="countdown-content">

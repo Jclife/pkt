@@ -1,4 +1,5 @@
 function shopCart(item) {
+    console.log("in  method");
     var id = $(item).attr("class");
     var t = $(item).get(0).tagName;
     var addNum;
@@ -68,11 +69,9 @@ function shopCart(item) {
                         "<span class='quantity'><p class='number' style='display: inline-block;'> "+data.num+"</p> × ￥<p style='display: inline-block;' class='price'>"+data.price+"</p></span>" +
                         "</li>")
                 }
-
-                var tmpPrice = getAllPrice();
-                $("#addAllPrice").html(tmpPrice);
             }
-
+            var tmpPrice = getAllPrice();
+            $("#addAllPrice").html(tmpPrice);
         },
         error: function (data) {
             console.log(data)
@@ -137,7 +136,7 @@ function getAllPrice() {
         ncp.push($(ncl[i]).find("p:eq(1)"));
     }
     for (var i = 0; i < ncn.length; i++) {
-        tmpPrice = tmpPrice + parseInt($(ncn[i]).text()) * parseFloat($(ncp[i]).text());
+        tmpPrice = tmpPrice + (parseInt($(ncn[i]).text()) * parseFloat($(ncp[i]).text()));
     }
     tmpPrice = parseFloat(tmpPrice).toFixed(2);
     return tmpPrice;

@@ -32,20 +32,20 @@
 
     <insert id="shelves" parameterType="myPro.bean.seller.Goods">
         INSERT into goods_tab
-        (store_id,goods_name,goods_price_now,goods_price,goods_count,goods_origin,goods_classify,goods_imgs,goods_desc)
+        (store_id,goods_name,goods_price_now,goods_price,goods_count,goods_origin,goods_classify,goods_imgs,goods_desc,is_online)
         VALUES(#{store_id,jdbcType=INTEGER},#{goods_name,jdbcType=VARCHAR},#{goods_price_now,jdbcType=FLOAT}
         ,#{goods_price,jdbcType=FLOAT},#{goods_count,jdbcType=INTEGER},#{goods_origin,jdbcType=VARCHAR}
-        ,#{goods_classify,jdbcType=VARCHAR},#{goods_imgs,jdbcType=VARCHAR},#{goods_desc,jdbcType=VARCHAR})
+        ,#{goods_classify,jdbcType=VARCHAR},#{goods_imgs,jdbcType=VARCHAR},#{goods_desc,jdbcType=VARCHAR},0)
     </insert>
     
     <select id="getGoodsList" resultMap="goodsMap">
-        SELECT * FROM goods_tab WHERE store_id = #{store_id}
+        SELECT * FROM goods_tab WHERE store_id = #{store_id} AND is_online = 0;
     </select>
 
     <select id="findGoodsList" resultMap="goodsMap">
         SELECT * FROM goods_tab
         <where>
-            store_id=#{store_id}
+            store_id=#{store_id} AND is_online = 0
             <choose>
                 <when test="content!=''">
                     AND  goods_name = #{content}
@@ -78,15 +78,15 @@
     </select>
 
     <select id="hotSaleList" resultMap="goodsMap">
-        SELECT * FROM goods_tab WHERE store_id = #{store_id}  ORDER BY goods_sale_count DESC ;
+        SELECT * FROM goods_tab WHERE store_id = #{store_id} ORDER BY goods_sale_count DESC ;
     </select>
 
     <select id="moneySaleList" resultMap="goodsMap">
-        SELECT * FROM goods_tab WHERE store_id = #{store_id}  ORDER BY (goods_sale_count*goods_price_now) DESC ;
+        SELECT * FROM goods_tab WHERE store_id = #{store_id} ORDER BY (goods_sale_count*goods_price_now) DESC ;
     </select>
 
     <select id="modifyGoods" resultMap="goodsMap">
-        SELECT * FROM goods_tab WHERE goods_id = #{goods_id}
+        SELECT * FROM goods_tab WHERE goods_id = #{goods_id} AND is_online = 0;
     </select>
 
     <update id="modifyBaseGood" parameterType="myPro.bean.seller.Goods">
@@ -105,7 +105,9 @@
         UPDATE  goods_tab SET goods_imgs=#{imgJson,jdbcType=VARCHAR} WHERE goods_id = #{goods_id}
     </update>
 
-    <delete id="deleteGood">
-        DELETE FROM goods_tab WHERE goods_id = #{goods_id,jdbcType=INTEGER}
-    </delete>
+    <update id="deleteGood">
+        UPDATE  goods_tab
+        SET is_online = 1
+        WHERE goods_id = #{goods_id,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -167,8 +167,8 @@ public class SysCompletImpl implements SysCompletService {
         return NumResult;
     }
 
-    public Goods getGoodsInId(int id) {
-        return completeDao.getGoodsInId(id);
+    public Goods getGoodsInId(int id,int is_online) {
+        return completeDao.getGoodsInId(id,is_online);
     }
 
     public boolean insertCartList(Cart cart) {
@@ -202,7 +202,7 @@ public class SysCompletImpl implements SysCompletService {
 
         List<Goods> getGoods = new ArrayList<Goods>();
         for (int i = 0; i <goods_idList.size() ; i++) {
-            getGoods.add(service.getGoodsInId(goods_idList.get(i)));
+            getGoods.add(service.getGoodsInId(goods_idList.get(i),0));
         }
 
         List<List<String>> jsonList = new ArrayList<List<String>>();

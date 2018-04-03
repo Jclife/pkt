@@ -117,7 +117,6 @@
 											</li>
 										</c:forEach>
 									</ul>
-
 									<p class="total">
 										<strong>总计:</strong>
 										<span class="amount" id="addAllPrice">${addPrice}</span>

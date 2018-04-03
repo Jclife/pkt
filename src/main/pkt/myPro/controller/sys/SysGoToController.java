@@ -133,7 +133,6 @@ public class SysGoToController implements SysPageManager {
                                      @PathVariable("type") int type,
                                      @PathVariable("page") int page,
                                      @PathVariable("limit") int limit){
-
         //得到所有的商品信息
         List<ShopPo> allList = service.getShopLists(-1,-1,0,0);
         List<ShopPo> typeList = service.getShopLists((limit*(page-1)),limit,0,0);
@@ -197,7 +196,7 @@ public class SysGoToController implements SysPageManager {
     @RequestMapping(value = "shopDetail/{goods_id}")
     public String to_shop_detail(HttpSession session, Model model,@PathVariable("goods_id") int goods_id){
         List<ShopPo> allList = service.getShopLists(-1,-1,0,0);
-        Goods goods = service.getGoodsInId(goods_id);
+        Goods goods = service.getGoodsInId(goods_id,0);
         List<String> list = service.shopDetailImgLists(goods);
         List<ShopPo> otherGoods = service.getShopLists(5,-1,1,0);
         List<Goods> otherList=otherGoods.get(0).getAllList();
@@ -274,10 +273,7 @@ public class SysGoToController implements SysPageManager {
         }
         List<Goods> getGoods = new ArrayList<Goods>();
         for (int i = 0; i <goods_idList.size() ; i++) {
-            System.out.println(goods_idList.get(i)+"  000000");
-            Goods tmpGood = service.getGoodsInId(goods_idList.get(i));
-            System.out.println(tmpGood.toString());
-            getGoods.add(tmpGood);
+            getGoods.add(service.getGoodsInId(goods_idList.get(i),1));
         }
         List<List<String>> jsonList = new ArrayList<List<String>>();
         List<GoodsPo> imgList = service.setImgJsonInIndex(jsonList,getGoods);

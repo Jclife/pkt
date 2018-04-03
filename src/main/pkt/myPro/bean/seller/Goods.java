@@ -24,6 +24,7 @@ public class Goods {
     String goods_comment;
     int goods_wait_sale;
     String goods_sale_time;
+    int is_online;
 
     @Override
     public String toString() {
@@ -43,7 +44,16 @@ public class Goods {
                 ", goods_comment='" + goods_comment + '\'' +
                 ", goods_wait_sale=" + goods_wait_sale +
                 ", goods_sale_time='" + goods_sale_time + '\'' +
+                ", is_online=" + is_online +
                 '}';
+    }
+
+    public int getIs_online() {
+        return is_online;
+    }
+
+    public void setIs_online(int is_online) {
+        this.is_online = is_online;
     }
 
     public String getGoods_sale_time() {

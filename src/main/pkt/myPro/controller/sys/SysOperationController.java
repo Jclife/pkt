@@ -43,7 +43,7 @@ public class SysOperationController {
         User user = (User) session.getAttribute("userInfo");
         CartPo cartPo = new CartPo();
         if (user!=null&&user.getUser_name()!=null&&!"".equals(user.getUser_name())){
-            Goods goods = service.getGoodsInId(id);
+            Goods goods = service.getGoodsInId(id,0);
             List<Goods> list = new ArrayList<Goods>();
             list.add(goods);
             List<List<String>> jsonList = new ArrayList<List<String>>();
@@ -96,7 +96,7 @@ public class SysOperationController {
                 }
             }
         }else {
-            Goods goods = service.getGoodsInId(id);
+            Goods goods = service.getGoodsInId(id,0);
             List<Goods> list = new ArrayList<Goods>();
             list.add(goods);
             List<List<String>> jsonList = new ArrayList<List<String>>();
@@ -182,7 +182,7 @@ public class SysOperationController {
             br = service.insertComment(user_id,goods_id,num,userInfo,d);
             if (br){
                 br = service.deleteCart(user_id,goods_id);
-                br = service.saleGoodsCount(goods_id,sessionMap.get(i).getNum());
+                br = service.saleGoodsCount(goods_id,num);
             }
         }
         if (br){

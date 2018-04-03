@@ -23,7 +23,7 @@ public interface SysCompleteDao {
 
     List<Goods> getShopLists(@Param("limit") int limit,@Param("last") int last,@Param("type") int type,@Param("order") int order);
 
-    Goods getGoodsInId(int id);
+    Goods getGoodsInId(@Param("id") int id,@Param("is_online") int is_online);
 
     void insertCart(Cart cart);
 

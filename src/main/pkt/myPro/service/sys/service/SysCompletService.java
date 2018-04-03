@@ -39,7 +39,7 @@ public interface SysCompletService {
 
     Map<String,Integer> numberResultShop(List<ShopPo> list,int mark);
 
-    Goods getGoodsInId(int id);
+    Goods getGoodsInId(int id,int is_online);
 
     boolean insertCartList(Cart cart);
 

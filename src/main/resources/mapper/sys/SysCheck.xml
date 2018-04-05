@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPro.dao.sys.SysCheckDao">
+
+    <!--完成购物后插入历史订单表-->
+    <insert id="insertCommentTab">
+        INSERT INTO comment_tab(user_id,goods_id,goods_count,userInfo,shopTime)
+        VALUES (#{user_id,jdbcType=INTEGER},#{goods_id,jdbcType=INTEGER},#{num,jdbcType=INTEGER},#{userInfo,jdbcType=VARCHAR},#{time,jdbcType=TIMESTAMP})
+    </insert>
+
+    <!--修改已售数量-->
+    <update id="saleGoodsCount">
+        UPDATE goods_tab SET goods_sale_count = goods_sale_count + #{num}
+        WHERE goods_id = #{goods_id}
+    </update>
+</mapper>

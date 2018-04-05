@@ -122,8 +122,8 @@
                 <th class="sorting"style="width:22%;">商品名称</th>
                 <th class="sorting" style="width:13%;">原价</th>
                 <th class="sorting" style="width:13%;">促销价格</th>
+                <th class="sorting" style="width:13%;">菜系</th>
                 <th class="sorting" style="width:13%;">类型</th>
-                <th class="sorting" style="width:13%;">数量</th>
                 <th class="sorting" style="width:13%;">售出</th>
                 <th class="sorting" style="width:13%;">操作</th>
               </tr>
@@ -132,6 +132,7 @@
                 <tr role="row" class="even">
                   <td class="sorting_1">${modifyGood.goods_name}</td>
                   <td>${modifyGood.goods_price}</td>
+                  <td>${modifyGood.goods_cuisine}</td>
                   <td>${modifyGood.goods_price_now}</td>
                   <c:choose>
                     <c:when test="${modifyGood.goods_classify==1}">
@@ -147,7 +148,6 @@
                       <td><p>火锅</p></td>
                     </c:when>
                   </c:choose>
-                  <td>${modifyGood.goods_count}</td>
                   <td>${modifyGood.goods_sale_count}</td>
                   <td><button type="button" class="btn btn-primary" onclick="deleteGood(this)" gid="${modifyGood.goods_id}">下架</button></td>
                 </tr>
@@ -163,17 +163,17 @@
             <div class="panel-body" style="padding-bottom:30px;">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label text-right">商品名称</label>
+                  <label class="col-sm-2 control-label text-right">菜品名称</label>
                   <div class="col-sm-3">
                     <input type="text" class="form-control" value="${modifyGood.goods_name}" id="goods_name">
                   </div>
-                  <label class="col-sm-2 control-label text-right">产地</label>
+                  <label class="col-sm-2 control-label text-right">菜系</label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" value="${modifyGood.goods_origin}" id="goods_origin">
+                    <input type="text" class="form-control" value="${modifyGood.goods_cuisine}" id="goods_cuisine">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label text-right">商品价格</label>
+                  <label class="col-sm-2 control-label text-right">菜品价格</label>
                   <div class="col-sm-3">
                     <input name="price_min" value="${modifyGood.goods_price}" placeholder="￥" id="goods_price" autocomplete="off" class="layui-input form-control" type="text">
                   </div>
@@ -183,9 +183,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label text-right">商品数量</label>
+                  <label class="col-sm-2 control-label text-right">菜品简单描述</label>
                   <div class="col-sm-3">
-                    <input type="text" value="${modifyGood.goods_count}" class="form-control" id="goods_count">
+                    <input type="text" value="${modifyGood.goods_simp_desc}" class="form-control" id="goods_simp_desc">
                   </div>
                   <label class="col-sm-2 control-label text-right">类型</label>
                   <div class="col-sm-3">
@@ -220,7 +220,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label text-right">商品简单描述</label>
+                  <label class="col-sm-2 control-label text-right">商品描述</label>
                   <div class="col-sm-6">
                     <input type="text" value="${modifyGood.goods_desc}" class="form-control" id="goods_desc">
                   </div>

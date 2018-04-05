@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPro.dao.sys.SysPersonalDao">
+
+
+    <!--得到历史订单-->
+    <select id="getHistoryGoods" resultType="myPro.bean.sys.HistoryGoods">
+        SELECT * FROM comment_tab WHERE user_id = #{user_id}
+    </select>
+
+    <!--添加评论-->
+    <update id="addComment">
+        UPDATE comment_tab SET content = #{text}
+        WHERE user_id = #{user_id} AND goods_id = #{goods_id} AND com_id = #{com_id}
+    </update>
+
+    <!--密码修改-->
+    <update id="modifyUserPass">
+        UPDATE user_tab SET user_password = #{password}
+        WHERE user_id = #{user_id}
+    </update>
+</mapper>

@@ -235,9 +235,6 @@
 										<span class="add-to-cart">
 											<a style="cursor:pointer;" onclick="shopCart(this)" class="${item.goods.goods_id}" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" title="购物车"></a>
 										</span>
-										<span class="wishlist">
-											<a href="#" data-toggle="tooltip" data-placement="top" title="收藏"></a>
-										</span>
 										</div>
 									</div>
 									<div class="product-info">

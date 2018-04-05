@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPro.dao.seller.SellerPerfectInfoDao">
+
+    <!--完善个人信息sql-->
+    <update id="completeInfo" parameterType="myPro.bean.seller.Store">
+        UPDATE store_tab SET
+        store_name=#{store_name,jdbcType=VARCHAR},
+        store_tags=#{store_tags,jdbcType=VARCHAR},
+        store_head=#{store_head,jdbcType=VARCHAR},
+        store_address=#{store_address,jdbcType=VARCHAR},
+        store_intro=#{store_intro,jdbcType=VARCHAR}
+        WHERE store_id = #{store_id,jdbcType=INTEGER}
+    </update>
+</mapper>

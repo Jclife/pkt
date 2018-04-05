@@ -119,17 +119,17 @@
             <div class="panel-body" style="padding-bottom:30px;">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label class="col-sm-2 control-label text-right">商品名称</label>
+                  <label class="col-sm-2 control-label text-right">菜品名称</label>
                   <div class="col-sm-3">
                     <input type="text" class="form-control" id="goods_name">
                   </div>
-                  <label class="col-sm-2 control-label text-right">产地</label>
+                  <label class="col-sm-2 control-label text-right">菜系</label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" id="goods_origin">
+                    <input type="text" class="form-control" id="goods_cuisine">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label text-right">商品价格</label>
+                  <label class="col-sm-2 control-label text-right">菜品价格</label>
                   <div class="col-sm-3">
                     <input name="price_min" placeholder="￥" id="goods_price" autocomplete="off" class="layui-input form-control" type="text">
                   </div>
@@ -139,9 +139,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label text-right">商品数量</label>
+                  <label class="col-sm-2 control-label text-right">菜品简单描述</label>
                   <div class="col-sm-3">
-                    <input type="text" class="form-control" id="goods_count">
+                    <input type="text" class="form-control" id="goods_simp_desc">
                   </div>
                   <label class="col-sm-2 control-label text-right">类型</label>
                   <div class="col-sm-3">
@@ -155,7 +155,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label text-right">商品简单描述</label>
+                  <label class="col-sm-2 control-label text-right">商品具体描述</label>
                   <div class="col-sm-6">
                     <input type="text" class="form-control" id="goods_desc">
                   </div>

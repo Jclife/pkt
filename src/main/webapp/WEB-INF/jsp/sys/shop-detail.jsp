@@ -211,10 +211,10 @@
 										</c:choose>
 									</div>
 									<div class="mb-3">
-										<p id="remain_num" remainNum="${goods.goods_count-goods.goods_sale_count}">剩余${goods.goods_count-goods.goods_sale_count}</p>
+										<p id="remain_num" remainNum="${goods.goods_sale_count}">已售${goods.goods_sale_count}</p>
 									</div>
 									<div class="mb-3">
-										<p>${goods.goods_desc}</p>
+										<p>${goods.goods_simp_desc}</p>
 									</div>
 									<form class="cart" style="margin-bottom: 0px">
 										<div class="quantity-chooser">
@@ -226,10 +226,6 @@
 										</div>
 									</form>
 									<button type="button" class="${goods.goods_id}" onclick="shopCart(this)" style="padding: 12px 29px;border: 1px solid;border-color: #5fbd74;border-radius: 3px;background: #5fbd74;color: #fff;font-size: 15px;line-height: 1;font-weight: bold;letter-spacing: .05em;">添加到购物车</button>
-									<div class="product-tool">
-										<a href="#" data-toggle="tooltip" data-placement="top" title="收藏"> 收藏 </a>
-										<a class="compare" href="#" data-toggle="tooltip" data-placement="top" title="比较"> 比较 </a>
-									</div>
 									<div class="product-meta">
 										<table>
 											<tbody>
@@ -254,12 +250,8 @@
 												</c:choose>
 											</tr>
 											<tr>
-												<td class="label">分享</td>
-												<td class="share">
-													<a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
-													<a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
-													<a target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
-												</td>
+												<td class="label">菜系</td>
+												<td><p>${goods.goods_cuisine}</p></td>
 											</tr>
 											</tbody>
 										</table>
@@ -332,11 +324,6 @@
 																	<span class="hot">热卖</span>
 																</c:when>
 															</c:choose>
-															<c:choose>
-																<c:when test="${item.goods.goods_sale_count>=item.goods.goods_count}">
-																	<span class="outofstock"><span>售光</span>下次再来</span>
-																</c:when>
-															</c:choose>
 														</div>
 														<img src="http://123.207.250.128:8888/${item.list.get(0)}" style="width: 237px;height: 150px;"/>
 													</a>
@@ -369,10 +356,10 @@
 							<div class="widget widget-product-categories">
 								<h3 class="widget-title">商品分类</h3>
 								<ul class="product-categories">
-									<li><a href="#">荤菜</a> <span class="count">${number.meatNum}</span></li>
-									<li><a href="#">汤类</a> <span class="count">${number.soupNum}</span></li>
-									<li><a href="#">小炒</a> <span class="count">${number.starchNum}</span></li>
-									<li><a href="#">火锅</a> <span class="count">${number.hotPotNum}</span></li>
+									<li><a href="<%=basePath%>/pkt/shop/1/1/6">荤菜</a> <span class="count">${number.meatNum}</span></li>
+									<li><a href="<%=basePath%>/pkt/shop/2/1/6">汤类</a> <span class="count">${number.soupNum}</span></li>
+									<li><a href="<%=basePath%>/pkt/shop/3/1/6">小炒</a> <span class="count">${number.starchNum}</span></li>
+									<li><a href="<%=basePath%>/pkt/shop/4/1/6">火锅</a> <span class="count">${number.hotPotNum}</span></li>
 								</ul>
 							</div>
 							<div class="widget widget-products">

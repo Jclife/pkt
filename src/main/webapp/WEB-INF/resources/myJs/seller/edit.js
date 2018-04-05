@@ -35,10 +35,10 @@ layui.use('upload', function(){
 function subInfo() {
     var goods={
         goods_name:$("#goods_name").val(),
-        goods_origin:$("#goods_origin").val(),
+        goods_cuisine:$("#goods_cuisine").val(),
         goods_price: $("#goods_price").val(),
         goods_price_now:$("#goods_price_now").val(),
-        goods_count:$("#goods_count").val(),
+        goods_simp_desc:$("#goods_simp_desc").val(),
         goods_classify:$('#goods_classify option:selected').val(),
         goods_desc: $("#goods_desc").val(),
         goods_imgs:JSON.stringify(url_list)
@@ -69,10 +69,10 @@ function modifyBase(item) {
     var goods={
         goods_id:id,
         goods_name:$("#goods_name").val(),
-        goods_origin:$("#goods_origin").val(),
+        goods_cuisine:$("#goods_cuisine").val(),
         goods_price: $("#goods_price").val(),
         goods_price_now:$("#goods_price_now").val(),
-        goods_count:$("#goods_count").val(),
+        goods_simp_desc:$("#goods_simp_desc").val(),
         goods_classify:$('#goods_classify option:selected').val(),
         goods_desc: $("#goods_desc").val(),
     };

@@ -20,7 +20,6 @@ $(function(){
     $(".popover-options a").popover({html : true });
 });
 
-
 function closePop(item) {
     var id = $(item).attr("aria-describedby");
     var listDiv = $(".popover");
@@ -86,6 +85,7 @@ function changePass() {
                         offset: ['40%', '50%'],
                         anim: 6
                     });
+                    window.location.reload();
                 }
             },
             error:function () {

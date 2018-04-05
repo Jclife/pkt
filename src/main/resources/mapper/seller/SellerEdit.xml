@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPro.dao.seller.SellerEditDao">
+
+    <resultMap id="goodsMap" type="myPro.bean.seller.Goods">
+        <id column="goods_id" property="goods_id"/>
+        <result column="store_id" property="store_id"/>
+        <result column="goods_name" property="goods_name"/>
+        <result column="goods_cuisine" property="goods_cuisine"/>
+        <result column="goods_price" property="goods_price"/>
+        <result column="goods_price_now" property="goods_price_now"/>
+        <result column="goods_simp_desc" property="goods_simp_desc"/>
+        <result column="goods_sale_count" property="goods_sale_count"/>
+        <result column="goods_classify" property="goods_classify"/>
+        <result column="goods_imgs" property="goods_imgs"/>
+        <result column="goods_desc" property="goods_desc"/>
+        <result column="goods_sale_time" property="goods_sale_time"/>
+        <result column="is_online" property="is_online"/>
+    </resultMap>
+
+
+    <!--菜品上架sql-->
+    <insert id="shelves" parameterType="myPro.bean.seller.Goods">
+        INSERT into goods_tab
+        (store_id,goods_name,goods_price_now,goods_price,goods_simp_desc,goods_cuisine,goods_classify,goods_imgs,goods_desc,is_online)
+        VALUES(
+        #{store_id,jdbcType=INTEGER},
+        #{goods_name,jdbcType=VARCHAR},
+        #{goods_price_now,jdbcType=FLOAT},
+        #{goods_price,jdbcType=FLOAT},
+        #{goods_simp_desc,jdbcType=VARCHAR},
+        #{goods_cuisine,jdbcType=VARCHAR},
+        #{goods_classify,jdbcType=VARCHAR},
+        #{goods_imgs,jdbcType=VARCHAR},
+        #{goods_desc,jdbcType=VARCHAR},0)
+    </insert>
+
+</mapper>

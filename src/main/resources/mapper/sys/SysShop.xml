@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPro.dao.sys.SysShopDao">
+
+    <resultMap id="goodsMap" type="myPro.bean.seller.Goods">
+        <id column="goods_id" property="goods_id"/>
+        <result column="store_id" property="store_id"/>
+        <result column="goods_name" property="goods_name"/>
+        <result column="goods_cuisine" property="goods_cuisine"/>
+        <result column="goods_price" property="goods_price"/>
+        <result column="goods_price_now" property="goods_price_now"/>
+        <result column="goods_simp_desc" property="goods_simp_desc"/>
+        <result column="goods_sale_count" property="goods_sale_count"/>
+        <result column="goods_classify" property="goods_classify"/>
+        <result column="goods_imgs" property="goods_imgs"/>
+        <result column="goods_desc" property="goods_desc"/>
+        <result column="goods_sale_time" property="goods_sale_time"/>
+        <result column="is_online" property="is_online"/>
+    </resultMap>
+
+    <!--所有菜品页面分类查询菜品-->
+    <select id="getShopLists" resultMap="goodsMap">
+        SELECT * FROM goods_tab
+        <where>
+            is_online = 0
+            <choose>
+                <when test="type==1">
+                    AND goods_classify=1
+                </when>
+                <when test="type==2">
+                    AND goods_classify=2
+                </when>
+                <when test="type==3">
+                    AND goods_classify=3
+                </when>
+                <when test="type==4">
+                    AND goods_classify=4
+                </when>
+                <otherwise>
+                    AND 1=1
+                </otherwise>
+            </choose>
+            ORDER BY goods_sale_count
+            <choose>
+                <when test="order==0">
+                    DESC
+                </when>
+                <otherwise></otherwise>
+            </choose>
+        </where>
+        <choose>
+            <when test="limit!=-1">
+                limit #{limit}
+            </when>
+            <otherwise></otherwise>
+        </choose>
+        <choose>
+            <when test="last!=-1">
+                ,#{last}
+            </when>
+            <otherwise></otherwise>
+        </choose>
+
+    </select>
+</mapper>

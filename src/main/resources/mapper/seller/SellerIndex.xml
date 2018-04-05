@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPro.dao.seller.SellerIndexDao">
+
+    <resultMap id="goodsMap" type="myPro.bean.seller.Goods">
+        <id column="goods_id" property="goods_id"/>
+        <result column="store_id" property="store_id"/>
+        <result column="goods_name" property="goods_name"/>
+        <result column="goods_cuisine" property="goods_cuisine"/>
+        <result column="goods_price" property="goods_price"/>
+        <result column="goods_price_now" property="goods_price_now"/>
+        <result column="goods_simp_desc" property="goods_simp_desc"/>
+        <result column="goods_sale_count" property="goods_sale_count"/>
+        <result column="goods_classify" property="goods_classify"/>
+        <result column="goods_imgs" property="goods_imgs"/>
+        <result column="goods_desc" property="goods_desc"/>
+        <result column="goods_sale_time" property="goods_sale_time"/>
+        <result column="is_online" property="is_online"/>
+    </resultMap>
+
+    <select id="hotSaleList" resultMap="goodsMap">
+        SELECT * FROM goods_tab WHERE store_id = #{store_id} ORDER BY goods_sale_count DESC ;
+    </select>
+
+
+    <select id="moneySaleList" resultMap="goodsMap">
+        SELECT * FROM goods_tab WHERE store_id = #{store_id} ORDER BY (goods_sale_count*goods_price_now) DESC ;
+    </select>
+</mapper>

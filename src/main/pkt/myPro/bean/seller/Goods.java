@@ -9,22 +9,19 @@ package myPro.bean.seller;
  */
 public class Goods {
 
-    int goods_id;
-    int store_id;
-    String goods_name;
-    String goods_origin;
-    float goods_price;
-    float goods_price_now;
-    int goods_count;
-    int goods_sale_count;
-    String goods_tags;
-    int goods_classify;
-    String goods_imgs;
-    String goods_desc;
-    String goods_comment;
-    int goods_wait_sale;
-    String goods_sale_time;
-    int is_online;
+    int goods_id; //菜品ID
+    int store_id; // 店铺ID
+    String goods_name; //菜品名称
+    String goods_cuisine; //菜系
+    float goods_price; // 菜品价格
+    float goods_price_now; //菜品促销价格
+    String goods_simp_desc; //菜品简单描述
+    int goods_sale_count; //菜品售出数量
+    int goods_classify; //菜品类型
+    String goods_imgs; // 菜品图片
+    String goods_desc; // 菜品描述
+    String goods_sale_time; // 最近售出时间
+    int is_online; // 是否在售
 
     @Override
     public String toString() {
@@ -32,60 +29,17 @@ public class Goods {
                 "goods_id=" + goods_id +
                 ", store_id=" + store_id +
                 ", goods_name='" + goods_name + '\'' +
-                ", goods_origin='" + goods_origin + '\'' +
+                ", goods_cuisine='" + goods_cuisine + '\'' +
                 ", goods_price=" + goods_price +
                 ", goods_price_now=" + goods_price_now +
-                ", goods_count=" + goods_count +
+                ", goods_simp_desc='" + goods_simp_desc + '\'' +
                 ", goods_sale_count=" + goods_sale_count +
-                ", goods_tags='" + goods_tags + '\'' +
                 ", goods_classify=" + goods_classify +
                 ", goods_imgs='" + goods_imgs + '\'' +
                 ", goods_desc='" + goods_desc + '\'' +
-                ", goods_comment='" + goods_comment + '\'' +
-                ", goods_wait_sale=" + goods_wait_sale +
                 ", goods_sale_time='" + goods_sale_time + '\'' +
                 ", is_online=" + is_online +
                 '}';
-    }
-
-    public int getIs_online() {
-        return is_online;
-    }
-
-    public void setIs_online(int is_online) {
-        this.is_online = is_online;
-    }
-
-    public String getGoods_sale_time() {
-        return goods_sale_time;
-    }
-
-    public void setGoods_sale_time(String goods_sale_time) {
-        this.goods_sale_time = goods_sale_time;
-    }
-
-    public int getGoods_wait_sale() {
-        return goods_wait_sale;
-    }
-
-    public void setGoods_wait_sale(int goods_wait_sale) {
-        this.goods_wait_sale = goods_wait_sale;
-    }
-
-    public int getGoods_sale_count() {
-        return goods_sale_count;
-    }
-
-    public void setGoods_sale_count(int goods_sale_count) {
-        this.goods_sale_count = goods_sale_count;
-    }
-
-    public int getStore_id() {
-        return store_id;
-    }
-
-    public void setStore_id(int store_id) {
-        this.store_id = store_id;
     }
 
     public int getGoods_id() {
@@ -96,6 +50,14 @@ public class Goods {
         this.goods_id = goods_id;
     }
 
+    public int getStore_id() {
+        return store_id;
+    }
+
+    public void setStore_id(int store_id) {
+        this.store_id = store_id;
+    }
+
     public String getGoods_name() {
         return goods_name;
     }
@@ -104,12 +66,12 @@ public class Goods {
         this.goods_name = goods_name;
     }
 
-    public String getGoods_origin() {
-        return goods_origin;
+    public String getGoods_cuisine() {
+        return goods_cuisine;
     }
 
-    public void setGoods_origin(String goods_origin) {
-        this.goods_origin = goods_origin;
+    public void setGoods_cuisine(String goods_cuisine) {
+        this.goods_cuisine = goods_cuisine;
     }
 
     public float getGoods_price() {
@@ -128,20 +90,20 @@ public class Goods {
         this.goods_price_now = goods_price_now;
     }
 
-    public int getGoods_count() {
-        return goods_count;
+    public String getGoods_simp_desc() {
+        return goods_simp_desc;
     }
 
-    public void setGoods_count(int goods_count) {
-        this.goods_count = goods_count;
+    public void setGoods_simp_desc(String goods_simp_desc) {
+        this.goods_simp_desc = goods_simp_desc;
     }
 
-    public String getGoods_tags() {
-        return goods_tags;
+    public int getGoods_sale_count() {
+        return goods_sale_count;
     }
 
-    public void setGoods_tags(String goods_tags) {
-        this.goods_tags = goods_tags;
+    public void setGoods_sale_count(int goods_sale_count) {
+        this.goods_sale_count = goods_sale_count;
     }
 
     public int getGoods_classify() {
@@ -168,11 +130,19 @@ public class Goods {
         this.goods_desc = goods_desc;
     }
 
-    public String getGoods_comment() {
-        return goods_comment;
+    public String getGoods_sale_time() {
+        return goods_sale_time;
     }
 
-    public void setGoods_comment(String goods_comment) {
-        this.goods_comment = goods_comment;
+    public void setGoods_sale_time(String goods_sale_time) {
+        this.goods_sale_time = goods_sale_time;
+    }
+
+    public int getIs_online() {
+        return is_online;
+    }
+
+    public void setIs_online(int is_online) {
+        this.is_online = is_online;
     }
 }

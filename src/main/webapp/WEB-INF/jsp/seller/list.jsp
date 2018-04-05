@@ -151,13 +151,13 @@
                     <table class="table table-striped table-bordered dataTable no-footer" width="100%" cellspacing="0"  style="width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th class="sorting"style="width:22%;">商品名称</th>
+                          <th class="sorting"style="width:22%;">菜品名称</th>
                           <th class="sorting" style="width:13%;">原价</th>
                           <th class="sorting" style="width:13%;">促销价格</th>
                           <th class="sorting" style="width:13%;">类型</th>
-                          <th class="sorting" style="width:13%;">数量</th>
+                          <th class="sorting" style="width:13%;">菜系</th>
                           <th class="sorting" style="width:13%;">售出</th>
-                          <th class="sorting" style="width:13%;">售出</th>
+                          <th class="sorting" style="width:13%;">操作</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -185,9 +185,9 @@
                                   <td><p>火锅</p></td>
                                 </c:when>
                               </c:choose>
-                              <td>${item.goods_count}</td>
+                              <td>${item.goods_cuisine}</td>
                               <td>${item.goods_sale_count}</td>
-                              <td><button type="button" class="btn btn-primary" onclick="operaMethod(this)" id="${item.goods_id}">操作</button></td>
+                              <td><button type="button" class="btn btn-primary" onclick="operaMethod(this)" id="${item.goods_id}">修改</button></td>
                             </tr>
                         </c:forEach>
                       </tbody>

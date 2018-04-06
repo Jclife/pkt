@@ -1,6 +1,6 @@
 package myPro.bean.sys;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author liujun
@@ -15,7 +15,7 @@ public class Cart {
     int user_id;
     int goods_id;
     int goods_count;
-    Timestamp add_time;
+    String add_time;
 
     @Override
     public String toString() {
@@ -60,11 +60,11 @@ public class Cart {
         this.goods_count = goods_count;
     }
 
-    public Timestamp getAdd_time() {
+    public String getAdd_time() {
         return add_time;
     }
 
-    public void setAdd_time(Timestamp add_time) {
+    public void setAdd_time(String add_time) {
         this.add_time = add_time;
     }
 }

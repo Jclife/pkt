@@ -32,4 +32,5 @@ public class SellerLoginAndRegisterImpl implements SellerLoginAndRegisterService
             return false;
         }
     }
+
 }

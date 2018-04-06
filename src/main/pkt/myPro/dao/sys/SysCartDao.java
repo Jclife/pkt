@@ -4,6 +4,7 @@ import myPro.bean.sys.Cart;
 import org.apache.ibatis.annotations.Param;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public interface SysCartDao {
      * @param count
      * @param goods_id
      */
-    void addCartNum(@Param("time") Timestamp time, @Param("count") int count, @Param("goods_id") int goods_id);
+    void addCartNum(@Param("time") String  time, @Param("count") int count, @Param("goods_id") int goods_id);
 
 
     /**

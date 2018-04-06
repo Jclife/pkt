@@ -47,12 +47,15 @@ public class SysPersonalController implements SysPageManager{
     @RequestMapping("personal")
     public String to_personal(HttpSession session, Model model){
         User user = (User) session.getAttribute("userInfo");
+        if (user==null){
+            return REDIRECT_INDEX;
+        }
         Map<Integer,CartPo> sessionMap = (Map<Integer, CartPo>) session.getAttribute("cartMap");//购物车session
         cartService.addShopCartMethod(user,cartService,utilService,sessionMap,model,session);
         Map<Integer,CartPo> tmpMap = (Map<Integer, CartPo>) session.getAttribute("cartMap");
         int scale = 2;
         int roundingMode = 4;
-        List<Float> price = new ArrayList<Float>();
+        List<Float> price = new ArrayList<Float>(); //封装session里的购物车列表的价格
         if (tmpMap!=null){
             for (Integer i:tmpMap.keySet()) {
                 float tmpPrice = (tmpMap.get(i).getNum())*(tmpMap.get(i).getPrice());
@@ -61,40 +64,17 @@ public class SysPersonalController implements SysPageManager{
                 price.add(bd.floatValue());
             }
         }
-        List<HistoryGoods> historyGoods = service.getHistoryGoods(user.getUser_id());
-        List<Integer> goods_idList = new ArrayList<Integer>();
-        List<HisCartPo> result = new ArrayList<HisCartPo>();
-        for (int i = 0; i < historyGoods.size() ; i++) {
-            goods_idList.add(historyGoods.get(i).getGoods_id());
-        }
-        List<Goods> getGoods = new ArrayList<Goods>();
-        for (int i = 0; i <goods_idList.size() ; i++) {
-            getGoods.add(utilService.getGoodsInId(goods_idList.get(i),1));
-        }
-        List<List<String>> jsonList = new ArrayList<List<String>>();
-        List<GoodsPo> imgList = utilService.setImgJsonInIndex(jsonList,getGoods);
-        for (int i = getGoods.size()-1; i >=0 ; i--) {
-            HisCartPo cartPo = new HisCartPo();
-            cartPo.setNum(historyGoods.get(i).getGoods_count());
-            cartPo.setImgs(imgList.get(i).getList().get(0));
-            cartPo.setName(getGoods.get(i).getGoods_name());
-            cartPo.setPrice(getGoods.get(i).getGoods_price_now());
-            cartPo.setId(getGoods.get(i).getGoods_id());
-            cartPo.setContent(historyGoods.get(i).getContent());
-            cartPo.setCom_id(historyGoods.get(i).getCom_id());
-            result.add(cartPo);
-        }
-        List<Float> hisPrice = new ArrayList<Float>();
-        for (int i = 0; i < result.size(); i++) {
-            float tmpPrice= (result.get(i).getNum())*(result.get(i).getPrice());
-            BigDecimal bd = new BigDecimal((double)tmpPrice);
-            bd = bd.setScale(scale,roundingMode);
-            hisPrice.add(bd.floatValue());
-        }
+
+        List<HistoryGoods> historyGoods = service.getHistoryGoods(user.getUser_id(),2);//已经收货订单菜品列表
+        List<HistoryGoods> waitGoods = service.getHistoryGoods(user.getUser_id(),1);//待收货订单菜品列表
+        List<HistoryGoods> sendGoods = service.getHistoryGoods(user.getUser_id(),0);//待发货订单菜品列表
+        List<HisCartPo> historyList = service.getGoodsList(historyGoods,utilService);
+        List<HisCartPo> waitList = service.getGoodsList(waitGoods,utilService);
+        List<HisCartPo> sendList = service.getGoodsList(sendGoods,utilService);
         model.addAttribute("priceLists",price);
-        model.addAttribute("hisPrice",hisPrice);
-        model.addAttribute("histCart",result);
-        model.addAttribute("number",result.size());
+        model.addAttribute("histCart",historyList);
+        model.addAttribute("waitCart",waitList);
+        model.addAttribute("sendCart",sendList);
         return PERSIONAL;
     }
 
@@ -121,6 +101,13 @@ public class SysPersonalController implements SysPageManager{
             }
         }
         return  result;
+    }
+
+    @RequestMapping("changeGoodsStatus")
+    @ResponseBody
+    public String changeGoodsStatus(int com_id){
+        boolean br = service.changeGoodsStatus(com_id);
+        return br?"ok":"error";
     }
 
 }

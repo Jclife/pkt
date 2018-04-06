@@ -12,4 +12,5 @@
         INSERT into store_tab (store_name,store_account,store_password)
         VALUES (#{store_name,jdbcType=VARCHAR},#{store_account,jdbcType=VARCHAR},#{store_password,jdbcType=VARCHAR})
     </insert>
+
 </mapper>

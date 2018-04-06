@@ -1,5 +1,6 @@
 package myPro.bean.seller;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -14,7 +15,7 @@ public class Order {
     int order_id;
     String order_name;
     String order_content;
-    Timestamp order_time;
+    String order_time;
     String order_person;
     String order_message;
 
@@ -42,11 +43,11 @@ public class Order {
         this.order_content = order_content;
     }
 
-    public Timestamp getOrder_time() {
+    public String getOrder_time() {
         return order_time;
     }
 
-    public void setOrder_time(Timestamp order_time) {
+    public void setOrder_time(String order_time) {
         this.order_time = order_time;
     }
 

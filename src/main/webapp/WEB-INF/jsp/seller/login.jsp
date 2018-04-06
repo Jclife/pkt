@@ -39,7 +39,6 @@
             </div>
             <div class="r-forget cl">
                 <a href="<%=basePath%>/seller/register" class="z">账号注册</a>
-                <a href="<%=basePath%>/seller/forget_pass" class="y">忘记密码</a>
             </div>
             <button class="lang-btn off log-btn" onclick="login()">登录</button>
             <div class="third-party">

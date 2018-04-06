@@ -7,8 +7,8 @@
 
     <!--完成购物后插入历史订单表-->
     <insert id="insertCommentTab">
-        INSERT INTO comment_tab(user_id,goods_id,goods_count,userInfo,shopTime)
-        VALUES (#{user_id,jdbcType=INTEGER},#{goods_id,jdbcType=INTEGER},#{num,jdbcType=INTEGER},#{userInfo,jdbcType=VARCHAR},#{time,jdbcType=TIMESTAMP})
+        INSERT INTO comment_tab(store_id,user_id,goods_id,goods_count,userInfo,shopTime,get_goods)
+        VALUES (#{store_id,jdbcType=INTEGER},#{user_id,jdbcType=INTEGER},#{goods_id,jdbcType=INTEGER},#{num,jdbcType=INTEGER},#{userInfo,jdbcType=VARCHAR},#{time,jdbcType=TIMESTAMP},0)
     </insert>
 
     <!--修改已售数量-->
@@ -16,4 +16,8 @@
         UPDATE goods_tab SET goods_sale_count = goods_sale_count + #{num}
         WHERE goods_id = #{goods_id}
     </update>
+
+    <select id="getStoreIdFromGoodsID" resultType="java.lang.Integer">
+        SELECT store_id FROM goods_tab WHERE goods_id = #{goods_id}
+    </select>
 </mapper>

@@ -12,7 +12,8 @@
         store_tags=#{store_tags,jdbcType=VARCHAR},
         store_head=#{store_head,jdbcType=VARCHAR},
         store_address=#{store_address,jdbcType=VARCHAR},
-        store_intro=#{store_intro,jdbcType=VARCHAR}
+        store_intro=#{store_intro,jdbcType=VARCHAR},
+        store_point=#{store_point,jdbcType=VARCHAR}
         WHERE store_id = #{store_id,jdbcType=INTEGER}
     </update>
 </mapper>

@@ -1,5 +1,8 @@
 package myPro.bean.sys;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
  * @author liujun
  * @Title:
@@ -14,7 +17,9 @@ public class HisCartPo {
     String name;
     int id;
     String content;
-    int com_id;
+    String time;
+    int com_id; //评论表的ID
+    BigDecimal totalPrice;
 
     @Override
     public String toString() {
@@ -27,6 +32,33 @@ public class HisCartPo {
                 ", content='" + content + '\'' +
                 ", com_id=" + com_id +
                 '}';
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int num,float price) {
+        float tmpPrice = num * price;
+        BigDecimal bd = new BigDecimal((double)tmpPrice);
+        int scale = 2;
+        int roundingMode = 4;
+        bd = bd.setScale(scale,roundingMode);
+        this.totalPrice = bd;
+    }
+
+
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public int getCom_id() {

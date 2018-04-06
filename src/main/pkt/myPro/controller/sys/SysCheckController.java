@@ -43,6 +43,9 @@ public class SysCheckController implements SysPageManager{
     @RequestMapping("checkOut")
     public String to_check_out(HttpSession session, Model model){
         User user = (User) session.getAttribute("userInfo");
+        if (user==null){
+            return REDIRECT_INDEX;
+        }
         Map<Integer,CartPo> sessionMap = (Map<Integer, CartPo>) session.getAttribute("cartMap");//购物车session
         cartService.addShopCartMethod(user,cartService,utilService,sessionMap,model,session);
         Map<Integer,CartPo> tmpMap = (Map<Integer, CartPo>) session.getAttribute("cartMap");
@@ -56,6 +59,7 @@ public class SysCheckController implements SysPageManager{
             price.add(bd.floatValue());
         }
         model.addAttribute("priceLists",price);
+        model.addAttribute("user",user);
         return CHECK_OUT;
     }
 
@@ -70,8 +74,10 @@ public class SysCheckController implements SysPageManager{
         for (Integer i:sessionMap.keySet()) {
             int num = sessionMap.get(i).getNum();
             int goods_id = sessionMap.get(i).getId();
-            br = service.insertComment(user_id,goods_id,num,userInfo,d);
+            int store_id = service.getStoreId(goods_id);
+            br = service.insertComment(store_id,user_id,goods_id,num,userInfo,d);
             if (br){
+
                 br = cartService.deleteCart(user_id,goods_id);
                 br = service.saleGoodsCount(goods_id,num);
             }

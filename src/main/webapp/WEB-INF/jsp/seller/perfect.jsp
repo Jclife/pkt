@@ -24,6 +24,12 @@
 <link rel="stylesheet" type="text/css" href="<%=basePath%>/resources/asset/css/plugins/fullcalendar.min.css"/>
 <link href="<%=basePath%>/resources/asset/css/style.css" rel="stylesheet">
 <link href="<%=basePath%>/resources/layui/css/layui.css" rel="stylesheet">
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xq2eQ5Dz8alIO2k593NVITIVYM8E7zCT"></script>
+  <style type="text/css">
+    body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";font-size:14px;}
+    #l-map{height:300px;width:50%;}
+    #r-result{width:100%;}
+  </style>
 <!-- end: Css -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -86,8 +92,9 @@
             <li><a href="<%=basePath%>/seller/perfect">信息完善</a></li>
           </ul>
         </li>
-        <li class="ripple"> <a class="tree-toggle nav-header"> <span class="fa-diamond fa"></span> 菜品功能 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+        <li class="ripple"> <a class="tree-toggle nav-header"> <span class="fa-diamond fa"></span> 功能列表 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
           <ul class="nav nav-list tree">
+            <li><a href="<%=basePath%>/seller/operation">菜品操作</a></li>
             <li><a href="<%=basePath%>/seller/edit">菜品添加</a></li>
             <li><a href="<%=basePath%>/seller/list">菜品列表</a></li>
           </ul>
@@ -124,24 +131,26 @@
                     <input type="text" class="form-control" id="store_name" value="${store_info["store_name"]}">
                   </div>
                 </div>
-
-
                 <div class="form-group">
                   <label class="col-sm-2 control-label text-right">店铺简介</label>
                   <div class="col-sm-6">
                     <input type="text" class="form-control" id="store_intro" value="${store_info["store_intro"]}">
                   </div>
                 </div>
-
-
+                <div class="form-group" id="mapPoint" pointValue="${store_info["store_point"]}">
+                  <label class="col-sm-2 control-label text-right">地图显示</label>
+                  <div id="l-map"></div>
+                </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label text-right">店铺地址</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" id="store_address" value="${store_info["store_address"]}">
+                    <div id="r-result">
+                      <input type="text" class="form-control" id="store_address" size="20" placeholder="${store_info["store_address"]}">
+                    </div>
+                    <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
                   </div>
                 </div>
-
-                <div class="form-group">
+                <div class="form-group" style="padding-top: 15px">
                   <label class="col-sm-2 control-label text-right">店铺标签</label>
                   <div class="col-sm-3">
                     <input type="text" class="form-control" readonly="readonly" id="store_tags" value="${tags}">
@@ -158,7 +167,7 @@
                         <img class="layui-upload-img" id="setImg" style="width: 100%;height: 230px;">
                       </c:when>
                       <c:otherwise>
-                        <img class="layui-upload-img" id="setImg" style="width: 100%;height: 230px;" src="http://123.207.250.128:8888/${store_info["store_head"]}">
+                        <img tValue="${store_info["store_head"]}" class="layui-upload-img" id="setImg" style="width: 100%;height: 230px;" src="http://123.207.250.128:8888/${store_info["store_head"]}">
                       </c:otherwise>
                     </c:choose>
                     <p id="ImgText"></p>
@@ -224,13 +233,16 @@
 <!-- plugins --> 
 <script src="<%=basePath%>/resources/asset/js/plugins/jquery.nicescroll.js"></script> 
 <!-- custom -->
-<script src="<%=basePath%>/resources/asset/js/main.js"></script> 
+<script src="<%=basePath%>/resources/myJs/seller/map.js"></script>
+<script src="<%=basePath%>/resources/asset/js/main.js"></script>
 <script src="<%=basePath%>/resources/layui/layui.js"></script>
 <script src="<%=basePath%>/resources/myJs/seller/perfect.js"></script>
 <script src="<%=basePath%>/resources/myJs/seller/index.js"></script>
 <!-- end: Javascript -->
 <script>
-
+  function getPointValue() {
+      return
+  }
 </script>
 </body>
 </html>

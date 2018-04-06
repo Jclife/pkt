@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myPro.dao.seller.SellerOperationDao">
+
+    <select id="getOrderGoodsToOperation" resultType="myPro.bean.sys.HistoryGoods">
+        SELECT * FROM comment_tab WHERE store_id = #{store_id} AND get_goods = #{isGetGood} ORDER BY shopTime DESC limit #{limit},#{last};
+    </select>
+
+    <select id="getNameFromGoodsId" resultType="java.lang.String">
+        SELECT goods_name FROM goods_tab WHERE goods_id = #{goods_id}
+    </select>
+
+    <select id="getPriceFromGoodsId" resultType="java.lang.Float">
+        SELECT goods_price_now FROM goods_tab WHERE goods_id = #{goods_id}
+    </select>
+
+    <update id="confirmDelivery">
+        UPDATE comment_tab SET get_goods = 1 WHERE com_id = #{com_id};
+    </update>
+</mapper>

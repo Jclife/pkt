@@ -2,6 +2,8 @@ package myPro.controller.seller;
 
 import myPro.bean.seller.Store;
 import myPro.service.seller.service.SellerLoginAndRegisterService;
+import myPro.utils.common.MD5Utils;
+import myPro.utils.common.RegexUtils;
 import myPro.utils.common.SessionUtils;
 import myPro.utils.seller.SellerPageManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +46,7 @@ public class SellerLoginAndRegisterController implements SellerPageManager{
         Map<String,String> result = new HashMap<String, String>();
         Store store = seller.getStoreInfo(account);
         if (store!=null){
-            if (password.equals(store.getStore_password())){
+            if (MD5Utils.verifyMD5(password,store.getStore_password())){
                 result.put("status","success");
                 if (session.getAttribute("userInfo")!=null){
                     session.removeAttribute("userInfo");
@@ -63,10 +65,21 @@ public class SellerLoginAndRegisterController implements SellerPageManager{
     @ResponseBody
     public Map register(Store store){
         Map<String,String> result = new HashMap<String, String>();
-        if (seller.insertNewStore(store)){
-            result.put("status","success");
+        if (seller.getStoreInfo(store.getStore_account())!=null){
+            result.put("status","isExit");
         }else {
-            result.put("status","error");
+            boolean accountTrue = RegexUtils.checkPhone(store.getStore_account());
+            boolean passwordTrue = RegexUtils.checkPassword(store.getStore_password());
+            if (accountTrue&&passwordTrue){
+                store.setStore_password(MD5Utils.EncodeMD5(store.getStore_password()));//MD5加密
+                if (seller.insertNewStore(store)){
+                    result.put("status","success");
+                }else {
+                    result.put("status","error");
+                }
+            }else {
+                result.put("status","error");
+            }
         }
         return result;
     }

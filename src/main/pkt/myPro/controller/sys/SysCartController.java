@@ -6,7 +6,6 @@ import myPro.bean.sys.Cart;
 import myPro.bean.sys.CartPo;
 import myPro.bean.sys.User;
 import myPro.service.sys.service.SysCartService;
-import myPro.service.sys.service.SysCompletService;
 import myPro.service.sys.service.SysUtilService;
 import myPro.utils.sys.SysPageManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author liujun
@@ -68,14 +65,15 @@ public class SysCartController implements SysPageManager{
     public CartPo shopCartList(HttpSession session, int id,int addNum){
 
         User user = (User) session.getAttribute("userInfo");
+
         CartPo cartPo = new CartPo();
-        if (user!=null&&user.getUser_name()!=null&&!"".equals(user.getUser_name())){
-            Goods goods = utilService.getGoodsInId(id,0);
+        if (user!=null&&user.getUser_name()!=null&&!"".equals(user.getUser_name())){//已经登录的情况下
+            Goods goods = utilService.getGoodsInId(id,0);//得到添加的菜品
             List<Goods> list = new ArrayList<Goods>();
             list.add(goods);
             List<List<String>> jsonList = new ArrayList<List<String>>();
-            List<GoodsPo> resultList = utilService.setImgJsonInIndex(jsonList,list);
-            Map<Integer,CartPo> sessionMap = new HashMap<Integer, CartPo>();
+            List<GoodsPo> resultList = utilService.setImgJsonInIndex(jsonList,list);//得到封装好的物品list
+            Map<Integer,CartPo> sessionMap = new HashMap<Integer, CartPo>();//存放session里存在的购物车列表
             int num = addNum;
             int goods_id = resultList.get(0).getGoods().getGoods_id();
             String img = resultList.get(0).getList().get(0);
@@ -87,11 +85,15 @@ public class SysCartController implements SysPageManager{
             cartPo.setPrice(price);
             cartPo.setId(id);
             sessionMap.put(goods_id,cartPo);
-            Timestamp d = new Timestamp(System.currentTimeMillis());
+
+            Date currentTime = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateString = formatter.format(currentTime);
+
             if (session.getAttribute("cartMap")==null) {
                 session.setAttribute("cartMap",sessionMap);
                 Cart cart = new Cart();
-                cart.setAdd_time(d);
+                cart.setAdd_time(dateString);
                 cart.setGoods_count(num);
                 cart.setGoods_id(goods_id);
                 cart.setUser_id(user.getUser_id());
@@ -111,11 +113,11 @@ public class SysCartController implements SysPageManager{
                     int tn = n+addNum;
                     tmpSessionMap.get(tmpExitId).setNum(tn) ;
                     tmpSessionMap.put(tmpExitId,tmpSessionMap.get(tmpExitId));
-                    service.addCartNum(d,tn,tmpExitId);
+                    service.addCartNum(dateString,tn,tmpExitId);
                 }else {
                     tmpSessionMap.put(goods_id,cartPo);
                     Cart cart = new Cart();
-                    cart.setAdd_time(d);
+                    cart.setAdd_time(dateString);
                     cart.setGoods_count(num);
                     cart.setGoods_id(goods_id);
                     cart.setUser_id(user.getUser_id());
@@ -184,6 +186,13 @@ public class SysCartController implements SysPageManager{
         return result;
     }
 
+    /**
+     * 购物车页面的数字改变
+     * @param id
+     * @param num
+     * @param session
+     * @return
+     */
     @RequestMapping("changeNum")
     @ResponseBody
     public String cartChange(int id,int num,HttpSession session){

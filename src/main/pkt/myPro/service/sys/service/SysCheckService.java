@@ -20,7 +20,7 @@ public interface SysCheckService {
      * @param time
      * @return
      */
-    boolean insertComment(int user_id,int goods_id,int num,String userInfo,Timestamp time);
+    boolean insertComment(int store_id,int user_id,int goods_id,int num,String userInfo,Timestamp time);
 
     /**
      * 订单完成后修改售出数量
@@ -29,4 +29,11 @@ public interface SysCheckService {
      * @return
      */
     boolean saleGoodsCount(int goods_id,int num);
+
+    /**
+     * 得到店铺id
+     * @param goods_id
+     * @return
+     */
+    int getStoreId(int goods_id);
 }

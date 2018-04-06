@@ -17,7 +17,7 @@ public interface SellerPageManager {
     String REGISTER = "seller/register";
     String PERFECT = "seller/perfect";
     String MODIFY_GOODS="seller/modify";
-
+    String GOODS_OPERATION="seller/goodsOperation";
 
     String REDIRECT_INDEX="redirect:/seller/index";
     String REDIRECT_FORGET_PASS="redirect:/seller/forgetPass";

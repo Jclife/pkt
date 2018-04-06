@@ -20,7 +20,7 @@ public interface SysPersonalDao {
      * @param user_id
      * @return
      */
-    List<HistoryGoods> getHistoryGoods(@Param("user_id") int user_id);
+    List<HistoryGoods> getHistoryGoods(@Param("user_id") int user_id,@Param("isGetGoods") int isGetGoods);
 
 
     /**
@@ -41,5 +41,11 @@ public interface SysPersonalDao {
      * @param password
      */
     void modifyUserPass(@Param("user_id") int user_id,@Param("password") String password);
+
+    /**
+     * 确认已经收货
+     * @param com_id
+     */
+    void changeGoodsStatus(@Param("com_id") int com_id);
 
 }

@@ -83,8 +83,9 @@
             <li><a href="<%=basePath%>/seller/perfect">信息完善</a></li>
           </ul>
         </li>
-        <li class="ripple"> <a class="tree-toggle nav-header"> <span class="fa-diamond fa"></span> 菜品功能 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+        <li class="ripple"> <a class="tree-toggle nav-header"> <span class="fa-diamond fa"></span> 功能列表 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
           <ul class="nav nav-list tree">
+            <li><a href="<%=basePath%>/seller/operation">菜品操作</a></li>
             <li><a href="<%=basePath%>/seller/edit">菜品添加</a></li>
             <li><a href="<%=basePath%>/seller/list">菜品列表</a></li>
           </ul>

@@ -11,7 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<title>Shop</title>
+<link rel="icon" href="<%=basePath%>/resources/images/logo.png" type="image/x-icon"/>
+<title>个人中心</title>
 <link rel="stylesheet" href="<%=basePath%>/resources/css/bootstrap.min.css" type="text/css" media="all">
 <link rel="stylesheet" href="<%=basePath%>/resources/css/font-awesome.min.css" type="text/css" media="all" />
 <link rel="stylesheet" href="<%=basePath%>/resources/css/ionicons.min.css" type="text/css" media="all" />
@@ -112,7 +113,7 @@
 													<img src="http://123.207.250.128:8888/${mymap.value.imgs}" style="width: 80px;height: 80px;"/>
 														${mymap.value.name}&nbsp;
 												</a>
-												<span class="quantity"><p style="display: inline-block;" class="number">${mymap.value.num}</p> × ￥<p style="display: inline-block;" class="price">${mymap.value.price}</p></span>
+												<span class="quantity"><p style="display: inline-block;">${mymap.value.num}</p> × ￥<p style="display: inline-block;" class="price">${mymap.value.price}</p></span>
 											</li>
 										</c:forEach>
 									</ul>
@@ -155,6 +156,8 @@
 					<ul class="per_nav">
 						<li class="active">基本信息</li>
 						<li>待付款</li>
+						<li>待发货</li>
+						<li>待收货</li>
 						<li>历史订单</li>
 						<li>我的优惠卷</li>
 						<li>密码修改</li>
@@ -179,6 +182,8 @@
 								<input type="tel" disabled="disabled"  value="${userPhone}" />
 							</p>
 					</div>
+
+					<%--待付款--%>
 					<div class="per_box"  style="display: none;">
 						<ul class="per_navul">
 							<li style="width: 20%">
@@ -201,26 +206,80 @@
 							</ul>
 						</c:forEach>
 					</div>
+
+					<%--待发货--%>
+					<div class="per_box"  style="display: none;">
+						<ul class="per_navul">
+							<li style="width: 20%">
+								图片
+							</li>
+							<li style="width: 20%">名称</li>
+							<li style="width: 20%">数量*价格</li>
+							<li style="width: 20%">合计</li>
+							<li style="width: 20%">时间</li>
+						</ul>
+						<c:forEach items="${sendCart}" var="sendCart" varStatus="num">
+							<ul class="per_listul">
+								<li style="width: 20%">
+									<img src="http://123.207.250.128:8888/${sendCart.imgs}" style="vertical-align: middle;height: 80px;width: 80px"/>
+								</li>
+								<li style="width: 20%">${sendCart.name}</li>
+								<li style="width: 20%">${sendCart.num}  *  ¥${sendCart.price}</li>
+								<li style="width: 20%">¥${sendCart.totalPrice}</li>
+								<li style="width: 20%">${sendCart.time}</li>
+							</ul>
+						</c:forEach>
+					</div>
+
+					<%--待收货--%>
+					<div class="per_box"  style="display: none;">
+						<ul class="per_navul">
+							<li style="width: 18%">
+								图片
+							</li>
+							<li style="width: 16%">名称</li>
+							<li style="width: 18%">数量*价格</li>
+							<li style="width: 16%">合计</li>
+							<li style="width: 16%">时间</li>
+							<li style="width: 16%">操作</li>
+						</ul>
+						<c:forEach items="${waitCart}" var="waitCart" varStatus="num">
+							<ul class="per_listul">
+								<li style="width: 18%">
+									<img src="http://123.207.250.128:8888/${waitCart.imgs}" style="vertical-align: middle;height: 80px;width: 80px"/>
+								</li>
+								<li style="width: 16%">${waitCart.name}</li>
+								<li style="width: 18%">${waitCart.num}  *  ¥${waitCart.price}</li>
+								<li style="width: 16%">¥${waitCart.totalPrice}</li>
+								<li style="width: 16%">${waitCart.time}</li>
+								<li style="width: 16%"><button type="button" gid="${waitCart.com_id}" onclick="confirmReceipt(this)" class="btn btn-primary">确认收货</button></li>
+							</ul>
+						</c:forEach>
+					</div>
+
+					<%--历史订单--%>
 					<div class="per_box" style="display: none;width: 80%;margin-left: 5%;">
 						<ul class="layui-timeline" >
 							<ul class="per_navul">
-								<li style="width: 20%">
+								<li style="width: 18%">
 									图片
 								</li>
-								<li style="width: 20%">名称</li>
-								<li style="width: 20%">数量*价格</li>
-								<li style="width: 20%">合计</li>
-								<li style="width: 20%">评论</li>
+								<li style="width: 16%">名称</li>
+								<li style="width: 16%">数量*价格</li>
+								<li style="width: 16%">合计</li>
+								<li style="width: 16%">时间</li>
+								<li style="width: 18%">评论</li>
 							</ul>
 							<c:forEach items="${histCart}" var="hisList" varStatus="num">
 								<ul class="per_listul">
-									<li style="width: 20%">
+									<li style="width: 18%">
 										<img src="http://123.207.250.128:8888/${hisList.imgs}" style="vertical-align: middle;height: 80px;width: 80px"/>
 									</li>
-									<li style="width: 20%">${hisList.name}</li>
-									<li style="width: 20%">${hisList.num}  *  ¥${hisList.price}</li>
-									<li style="width: 20%">¥${hisPrice[num.count-1]}</li>
-									<li style="width: 20%">
+									<li style="width: 16%">${hisList.name}</li>
+									<li style="width: 16%">${hisList.num}  *  ¥${hisList.price}</li>
+									<li style="width: 16%">¥${hisList.totalPrice}</li>
+									<li style="width: 16%">${hisList.time}</li>
+									<li style="width: 18%">
 										<c:choose>
 											<c:when test="${hisList.content==null}">
 												<p class="popover-options" style="margin-top: 14px">

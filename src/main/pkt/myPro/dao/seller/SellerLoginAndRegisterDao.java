@@ -14,4 +14,5 @@ public interface SellerLoginAndRegisterDao {
     Store getStoreInfo(String account);
 
     void insertNewStore(Store store);
+
 }

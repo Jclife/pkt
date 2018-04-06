@@ -5,10 +5,9 @@
 
 <mapper namespace="myPro.dao.sys.SysPersonalDao">
 
-
     <!--得到历史订单-->
     <select id="getHistoryGoods" resultType="myPro.bean.sys.HistoryGoods">
-        SELECT * FROM comment_tab WHERE user_id = #{user_id}
+        SELECT * FROM comment_tab WHERE user_id = #{user_id} AND get_goods = #{isGetGoods}
     </select>
 
     <!--添加评论-->
@@ -21,5 +20,9 @@
     <update id="modifyUserPass">
         UPDATE user_tab SET user_password = #{password}
         WHERE user_id = #{user_id}
+    </update>
+
+    <update id="changeGoodsStatus">
+        UPDATE comment_tab SET get_goods = 2 WHERE com_id = #{com_id}
     </update>
 </mapper>

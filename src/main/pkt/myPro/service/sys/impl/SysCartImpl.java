@@ -7,7 +7,6 @@ import myPro.bean.sys.CartPo;
 import myPro.bean.sys.User;
 import myPro.dao.sys.SysCartDao;
 import myPro.service.sys.service.SysCartService;
-import myPro.service.sys.service.SysCompletService;
 import myPro.service.sys.service.SysUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +14,7 @@ import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author liujun
@@ -44,7 +39,7 @@ public class SysCartImpl implements SysCartService {
         }
     }
 
-    public boolean addCartNum(Timestamp time,int count, int goods_id) {
+    public boolean addCartNum(String time, int count, int goods_id) {
         try {
             sys.addCartNum(time,count,goods_id);
             return true;
@@ -82,7 +77,7 @@ public class SysCartImpl implements SysCartService {
         return result;
     }
 
-    public Cart shopCartConversion2(Timestamp time,CartPo cartPo,int user_id) {
+    public Cart shopCartConversion2(String time,CartPo cartPo,int user_id) {
         Cart cart = new Cart();
         cart.setUser_id(user_id);
         cart.setAdd_time(time);

@@ -7,7 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>登录/注册</title>
+	<link rel="icon" href="<%=basePath%>/resources/images/logo.png" type="image/x-icon"/>
+	<title>用户登录</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="<%=basePath%>/resources/mycss/style.css">
 	<link href="<%=basePath%>/resources/mycss/popup-box.css" rel="stylesheet" type="text/css" media="all" />

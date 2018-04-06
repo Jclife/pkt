@@ -1,6 +1,7 @@
 package myPro.bean.sys;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author liujun
@@ -11,12 +12,15 @@ import java.sql.Timestamp;
  */
 public class HistoryGoods {
     int com_id;
+    int store_id;
     int user_id;
     int goods_id;
     int goods_count;
     String userInfo;
-    Timestamp shopTime;
+    String shopTime;
+    int get_goods;
     String content;
+
 
     @Override
     public String toString() {
@@ -29,6 +33,22 @@ public class HistoryGoods {
                 ", shopTime=" + shopTime +
                 ", content='" + content + '\'' +
                 '}';
+    }
+
+    public int getGet_goods() {
+        return get_goods;
+    }
+
+    public void setGet_goods(int get_goods) {
+        this.get_goods = get_goods;
+    }
+
+    public int getStore_id() {
+        return store_id;
+    }
+
+    public void setStore_id(int store_id) {
+        this.store_id = store_id;
     }
 
     public int getCom_id() {
@@ -71,11 +91,11 @@ public class HistoryGoods {
         this.userInfo = userInfo;
     }
 
-    public Timestamp getShopTime() {
+    public String getShopTime() {
         return shopTime;
     }
 
-    public void setShopTime(Timestamp shopTime) {
+    public void setShopTime(String shopTime) {
         this.shopTime = shopTime;
     }
 

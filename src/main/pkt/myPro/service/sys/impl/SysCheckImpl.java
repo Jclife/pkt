@@ -20,9 +20,9 @@ public class SysCheckImpl implements SysCheckService{
     @Autowired
     SysCheckDao sys;
 
-    public boolean insertComment(int user_id, int goods_id, int num, String userInfo, Timestamp time) {
+    public boolean insertComment(int store_id,int user_id, int goods_id, int num, String userInfo, Timestamp time) {
         try {
-            sys.insertCommentTab(user_id,goods_id,num,userInfo,time);
+            sys.insertCommentTab(store_id,user_id,goods_id,num,userInfo,time);
             return true;
         }catch (Exception e){
             return false;
@@ -36,5 +36,9 @@ public class SysCheckImpl implements SysCheckService{
         }catch (Exception e){
             return false;
         }
+    }
+
+    public int getStoreId(int goods_id) {
+        return sys.getStoreIdFromGoodsID(goods_id);
     }
 }

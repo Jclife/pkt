@@ -113,36 +113,15 @@
     </div>
     <div class="col-md-12 padding-0 form-element">
       <div class="col-md-12">
-        <div class="panel form-element-padding">
-            <div class="panel-heading">
-              <h4>查询条件</h4>
-            </div>
-            <div class="panel-body" style="padding-bottom:30px;">
-                <div class="form-group">
-                  <label class="col-sm-1 control-label text-right">类型</label>
-                  <div class="col-sm-3">
-                    <select class="form-control" id="find_type">
-                      <option value="5">所有</option>
-                      <option value="1">荤菜</option>
-                      <option value="2">汤</option>
-                      <option value="3">小炒</option>
-                      <option value="4">火锅</option>
-                    </select>
-                  </div>
-
-                  <label class="col-sm-1 control-label text-right">名称</label>
-                  <div class="col-sm-3">
-                    <input type="text" class="form-control" id="find_name">
-                  </div>
-                  <div class="col-sm-3">
-                    <button class="submit btn btn-danger" onclick="findGoods()">查询</button>
-                  </div>
-                </div>
-            </div>
-          </div>
         <div class="panel">
-          <div class="panel-heading">
-            <h3>结果列表</h3>
+          <div class="panel-heading" style="height: 46px">
+            <h3 style="display: inline-block">结果列表</h3>
+            <select class="form-control" id="find_type" style="display: inline-block;float:right;margin-right: 1%;width:auto">
+                <option>选择类别</option>
+                <option value="1">待发货</option>
+                <option value="2">待收货</option>
+                <option value="3">已收货</option>
+            </select>
           </div>
           <div class="panel-body">
             <div class="responsive-table">
@@ -151,46 +130,99 @@
                   <div class="col-sm-12">
                     <table class="table table-striped table-bordered dataTable no-footer" width="100%" cellspacing="0"  style="width: 100%;">
                       <thead>
-                        <tr role="row">
-                          <th class="sorting"style="width:22%;">菜品名称</th>
-                          <th class="sorting" style="width:13%;">原价</th>
-                          <th class="sorting" style="width:13%;">促销价格</th>
-                          <th class="sorting" style="width:13%;">类型</th>
-                          <th class="sorting" style="width:13%;">菜系</th>
-                          <th class="sorting" style="width:13%;">售出</th>
-                          <th class="sorting" style="width:13%;">操作</th>
-                        </tr>
+                      <c:choose>
+                        <c:when test="${status==1}">
+                          <tr role="row">
+                            <th class="sorting"style="width:12%;">菜品名称</th>
+                            <th class="sorting" style="width:12%;">数量</th>
+                            <th class="sorting" style="width:12%;">价格</th>
+                            <th class="sorting" style="width:20%;">订单时间</th>
+                            <th class="sorting" style="width:20%;">收货地址</th>
+                            <th class="sorting" style="width:12%;">收件人</th>
+                            <th class="sorting" style="width:12%;">操作</th>
+                          </tr>
+                        </c:when>
+                        <c:when test="${status==2}">
+                          <tr role="row">
+                            <th class="sorting"style="width:15%;">菜品名称</th>
+                            <th class="sorting" style="width:15%;">数量</th>
+                            <th class="sorting" style="width:15%;">价格</th>
+                            <th class="sorting" style="width:20%;">订单时间</th>
+                            <th class="sorting" style="width:20%;">收货地址</th>
+                            <th class="sorting" style="width:15%;">收件人</th>
+                          </tr>
+                        </c:when>
+                        <c:when test="${status==3}">
+                          <tr role="row">
+                            <th class="sorting"style="width:12%;">菜品名称</th>
+                            <th class="sorting" style="width:12%;">数量</th>
+                            <th class="sorting" style="width:12%;">价格</th>
+                            <th class="sorting" style="width:12%;">总价</th>
+                            <th class="sorting" style="width:12%;">订单时间</th>
+                            <th class="sorting" style="width:12%;">收货地址</th>
+                            <th class="sorting" style="width:12%;">收件人</th>
+                            <th class="sorting" style="width:16%;">评论</th>
+                          </tr>
+                        </c:when>
+                      </c:choose>
                       </thead>
                       <tbody>
-                        <c:forEach var="item" items="${list}" varStatus="status">
-                          <c:if test="${status.index%2==0}">
-                            <tr role="row" class="odd">
-                          </c:if>
-                          <c:if test="${status.index%2!=0}">
-                            <tr role="row" class="even">
-                          </c:if>
-                              <td class="sorting_1">${item.goods_name}</td>
-                              <td>${item.goods_price}</td>
-                              <td>${item.goods_price_now}</td>
-                              <c:choose>
-                                <c:when test="${item.goods_classify==1}">
-                                  <td><p>荤菜</p></td>
-                                </c:when>
-                                <c:when test="${item.goods_classify==2}">
-                                  <td><p>汤类</p></td>
-                                </c:when>
-                                <c:when test="${item.goods_classify==3}">
-                                  <td><p>小炒</p></td>
-                                </c:when>
-                                <c:when test="${item.goods_classify==4}">
-                                  <td><p>火锅</p></td>
-                                </c:when>
-                              </c:choose>
-                              <td>${item.goods_cuisine}</td>
-                              <td>${item.goods_sale_count}</td>
-                              <td><button type="button" class="btn btn-primary" onclick="operaMethod(this)" id="${item.goods_id}">修改</button></td>
+                      <c:choose>
+                        <c:when test="${status==1}">
+                          <c:forEach var="item" items="${waitSendGoods}" varStatus="status">
+                            <c:if test="${status.index%2==0}">
+                              <tr role="row" class="odd">
+                            </c:if>
+                            <c:if test="${status.index%2!=0}">
+                              <tr role="row" class="even">
+                            </c:if>
+                            <td class="sorting_1">${item.goods_name}</td>
+                            <td>${item.count}</td>
+                            <td>${item.price}</td>
+                            <td>${item.time}</td>
+                            <td>${item.address}</td>
+                            <td>${item.user_name}</td>
+                            <td><button type="button" class="btn btn-primary" onclick="confirmDelivery(this);" id="${item.com_id}">确认发货</button></td>
                             </tr>
-                        </c:forEach>
+                          </c:forEach>
+                        </c:when>
+                        <c:when test="${status==2}">
+                          <c:forEach var="item" items="${waitSendGoods}" varStatus="status">
+                            <c:if test="${status.index%2==0}">
+                              <tr role="row" class="odd">
+                            </c:if>
+                            <c:if test="${status.index%2!=0}">
+                              <tr role="row" class="even">
+                            </c:if>
+                            <td class="sorting_1">${item.goods_name}</td>
+                            <td>${item.count}</td>
+                            <td>${item.price}</td>
+                            <td>${item.time}</td>
+                            <td>${item.address}</td>
+                            <td>${item.user_name}</td>
+                            </tr>
+                          </c:forEach>
+                        </c:when>
+                        <c:when test="${status==3}">
+                          <c:forEach var="item" items="${waitSendGoods}" varStatus="status">
+                            <c:if test="${status.index%2==0}">
+                              <tr role="row" class="odd">
+                            </c:if>
+                            <c:if test="${status.index%2!=0}">
+                              <tr role="row" class="even">
+                            </c:if>
+                            <td class="sorting_1">${item.goods_name}</td>
+                            <td>${item.count}</td>
+                            <td>${item.price}</td>
+                            <td>${item.totalPrice}</td>
+                            <td>${item.time}</td>
+                            <td>${item.address}</td>
+                            <td>${item.user_name}</td>
+                            <td>${item.content}</td>
+                            </tr>
+                          </c:forEach>
+                        </c:when>
+                      </c:choose>
                       </tbody>
                     </table>
                     <div id="page" style="padding:0 25%;"></div>
@@ -216,7 +248,7 @@
 <script src="<%=basePath%>/resources/asset/js/plugins/jquery.nicescroll.js"></script> 
 <!-- custom --> 
 <script src="<%=basePath%>/resources/asset/js/main.js"></script> 
-<script src="<%=basePath%>/resources/myJs/seller/list.js"></script>
+<script src="<%=basePath%>/resources/myJs/seller/operation.js"></script>
 <script src="<%=basePath%>/resources/myJs/seller/index.js"></script>
 <!-- end: Javascript -->
 <script>

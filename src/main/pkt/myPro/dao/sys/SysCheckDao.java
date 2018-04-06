@@ -22,7 +22,7 @@ public interface SysCheckDao {
      * @param userInfo
      * @param time
      */
-    void insertCommentTab(@Param("user_id") int user_id, @Param("goods_id") int goods_id, @Param("num") int num, @Param("userInfo") String userInfo, @Param("time") Timestamp time);
+    void insertCommentTab(@Param("store_id") int store_id,@Param("user_id") int user_id, @Param("goods_id") int goods_id, @Param("num") int num, @Param("userInfo") String userInfo, @Param("time") Timestamp time);
 
     /**
      * 菜品详情
@@ -31,4 +31,11 @@ public interface SysCheckDao {
      * @param num
      */
     void saleGoodsCount(@Param("goods_id") int goods_id,@Param("num") int num);
+
+    /**
+     * 通过菜品id得到店铺id
+     * @param goods_id
+     * @return
+     */
+    int getStoreIdFromGoodsID(@Param("goods_id") int goods_id);
 }

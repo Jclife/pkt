@@ -11,7 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<title>Checkout</title>
+<link rel="icon" href="<%=basePath%>/resources/images/logo.png" type="image/x-icon"/>
+<title>支付账单</title>
 
 <link rel="stylesheet" href="<%=basePath%>/resources/css/bootstrap.min.css" type="text/css" media="all">
 <link rel="stylesheet" href="<%=basePath%>/resources/css/font-awesome.min.css" type="text/css" media="all" />
@@ -30,6 +31,18 @@
 	<script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	<script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xq2eQ5Dz8alIO2k593NVITIVYM8E7zCT"></script>
+	<style type="text/css">
+		body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";font-size:14px;}
+		#l-map{height:300px;width:50%;}
+		#r-result{width:100%;}
+		.tangram-suggestion-main{
+			z-index: 99999;
+		}
+		.col-md-12,.col-md-6{
+			padding-left: 0px;
+		}
+	</style>
 </head>
 <body>
 
@@ -129,32 +142,41 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h3>计费细节</h3>
-						<form>
-							<div class="row">
+						<div class="row">
+							<div class="col-md-6">
+								<label>姓名 <span class="required">*</span></label>
+								<div class="form-wrap">
+									<input type="text" name="your-firstname" id="fName" value="${user.user_name}" size="40" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<label>地图显示</label>
+								<div id="l-map"></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
 								<div class="col-md-6">
-									<label>姓名 <span class="required">*</span></label>
-									<div class="form-wrap">
-										<input type="text" name="your-firstname" id="fName" value="" size="40" />
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12">
 									<label>送货地址 <span class="required">*</span></label>
-									<div class="form-wrap">
-										<input type="text" name="your-address" id="fAddress" value="" size="40" />
+									<div>
+										<div id="r-result">
+											<input type="text" class="form-control" id="store_address" size="20">
+										</div>
+										<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
 									</div>
 								</div>
 							</div>
-							<div class="row">
+						</div>
+						<div class="row">
 								<div class="col-md-6">
 									<label>手机</label>
 									<div class="form-wrap">
-										<input type="text" name="your-phone" id="fPhone" value="" size="40" />
+										<input type="text" name="your-phone" id="fPhone" value="${user.user_phone}" size="40" />
 									</div>
 								</div>
-							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 				<div class="row">
@@ -320,6 +342,7 @@
 <script type='text/javascript' src='<%=basePath%>/resources/js/jquery.prettyPhoto.js'></script>
 <script type='text/javascript' src='<%=basePath%>/resources/js/jquery.prettyPhoto.init.min.js'></script>
 <script type="text/javascript" src="<%=basePath%>/resources/js/layer/layer.js"></script>
+<script type="text/javascript" src="<%=basePath%>/resources/myJs/seller/map.js"></script>
 <script type="text/javascript" src="<%=basePath%>/resources/js/script.js"></script>
 <script type="text/javascript" src="<%=basePath%>/resources/myJs/sys/common.js"></script>
 <script type="text/javascript" src="<%=basePath%>/resources/myJs/sys/cartShop.js"></script>

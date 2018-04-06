@@ -17,6 +17,7 @@ public class Store {
     String store_head;
     String store_intro;
     String store_address;
+    String store_point;
 
     @Override
     public String toString() {
@@ -29,7 +30,17 @@ public class Store {
                 ", store_head='" + store_head + '\'' +
                 ", store_intro='" + store_intro + '\'' +
                 ", store_address='" + store_address + '\'' +
+                ", store_point='" + store_point + '\'' +
                 '}';
+    }
+
+
+    public String getStore_point() {
+        return store_point;
+    }
+
+    public void setStore_point(String store_point) {
+        this.store_point = store_point;
     }
 
     public String getStore_address() {

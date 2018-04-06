@@ -185,13 +185,14 @@ function changeNum(item) {
 
 function cleanCart() {
     var name = $("#fName").val();
-    var address = $("#fAddress").val();
+    var address = $("#store_address").val();
     var phone = $("#fPhone").val();
-
     var userInfo = {};
     userInfo["name"] = name;
     userInfo["address"] = address;
     userInfo["phone"] = phone;
+    userInfo["lng"]=getPotion()['lng'];
+    userInfo["lat"]=getPotion()['lat'];
     if (isEmpty(name)&&isEmpty(address)&&isEmpty(phone)){
         var json = JSON.stringify(userInfo);
         $.ajax({

@@ -1,6 +1,7 @@
 var url_list=[];
 layui.use('upload', function(){
     var $ = layui.jquery,upload = layui.upload;
+    var index;
     upload.render({
         elem: '#upImg',
         url: '/seller/upImg',
@@ -8,6 +9,9 @@ layui.use('upload', function(){
         method:'post',
         accept:'file',
         before: function(obj){
+            index = layer.load(1, {
+                shade: [0.1,'#fff'] //0.1透明度的白色背景
+            });
             var count = $("#imgDiv").children("img").length;
             if (count<3){
                 obj.preview(function(index, file, result){
@@ -19,6 +23,7 @@ layui.use('upload', function(){
             }
         },
         done:function (res) {
+            layer.close(index);
             if (res["code"]>1){
                 return layer.msg("上传失败")
             }else {
@@ -27,6 +32,7 @@ layui.use('upload', function(){
             }
         },
         error:function () {
+            layer.close(index);
            return layer.msg("上传失败，原因未知");
         }
     });

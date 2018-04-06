@@ -102,3 +102,33 @@ function changePass() {
         $("#repeatPass").val('');
     }
 }
+
+function confirmReceipt(item) {
+    var comId = $(item).attr("gid");
+    $.ajax({
+        url: '/pkt/changeGoodsStatus',
+        type: 'post',
+        async: true,
+        data: {
+            com_id:comId
+        },
+        success: function (data) {
+            if (data=="ok"){
+                layer.msg("已经确定收货", {
+                    offset: ['40%', '50%'],
+                    anim: 6
+                });
+                window.location.reload();
+            }else {
+                layer.msg("发生未知错误", {
+                    offset: ['40%', '50%'],
+                    anim: 6
+                });
+                window.location.reload();
+            }
+        },
+        error:function () {
+
+        }
+    });
+}

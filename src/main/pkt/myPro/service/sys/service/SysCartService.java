@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public interface SysCartService {
      * @param goods_id
      * @return
      */
-    boolean addCartNum(Timestamp time, int count, int goods_id);
+    boolean addCartNum(String time, int count, int goods_id);
 
     /**
      * 得到购物车信息
@@ -58,7 +59,7 @@ public interface SysCartService {
      * @param user_id
      * @return
      */
-    Cart shopCartConversion2(Timestamp time,CartPo cartPo,int user_id);
+    Cart shopCartConversion2(String time,CartPo cartPo,int user_id);
 
     /**
      * 增加购物车

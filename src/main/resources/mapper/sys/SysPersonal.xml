@@ -25,4 +25,12 @@
     <update id="changeGoodsStatus">
         UPDATE comment_tab SET get_goods = 2 WHERE com_id = #{com_id}
     </update>
+
+    <select id="getCommentPoint" resultType="myPro.bean.sys.HistoryGoods">
+        SELECT * FROM comment_tab WHERE com_id = #{com_id};
+    </select>
+
+    <select id="getStorePoint" resultType="java.lang.String">
+        SELECT store_point FROM store_tab WHERE store_id = #{store_id};
+    </select>
 </mapper>

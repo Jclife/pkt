@@ -132,3 +132,19 @@ function confirmReceipt(item) {
         }
     });
 }
+
+function checkMap(item) {
+    var cid = $(item).attr("gid");
+    console.log(cid);
+    layer.open({
+        type: 2,
+        title: '查看配送流程',
+        offset: ['100px', '30%'],
+        shadeClose: true,
+        shade: false,
+        maxmin: false, //开启最大化最小化按钮
+        area: ['893px', '600px'],
+        content: '//localhost:8080/pkt/checkDelivery/'+cid
+    });
+}
+

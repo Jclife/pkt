@@ -41,7 +41,7 @@ public class SellerIndexController implements SellerPageManager{
                 model.addAttribute("hotList",hotList);
                 float money = service.saleMoney(hotList);
                 int number = service.allSaleNum(hotList);
-                int commentNum = service.commentNum(hotList);
+                int commentNum = service.commentNum(store.getStore_id());
                 model.addAttribute("money",money);
                 model.addAttribute("allNum",number);
                 model.addAttribute("commentNum",commentNum);

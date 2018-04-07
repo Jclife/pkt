@@ -25,7 +25,7 @@
     <!--菜品上架sql-->
     <insert id="shelves" parameterType="myPro.bean.seller.Goods">
         INSERT into goods_tab
-        (store_id,goods_name,goods_price_now,goods_price,goods_simp_desc,goods_cuisine,goods_classify,goods_imgs,goods_desc,is_online)
+        (store_id,goods_name,goods_price_now,goods_price,goods_simp_desc,goods_cuisine,goods_classify,goods_imgs,goods_desc,is_online,goods_sale_count)
         VALUES(
         #{store_id,jdbcType=INTEGER},
         #{goods_name,jdbcType=VARCHAR},
@@ -35,7 +35,7 @@
         #{goods_cuisine,jdbcType=VARCHAR},
         #{goods_classify,jdbcType=VARCHAR},
         #{goods_imgs,jdbcType=VARCHAR},
-        #{goods_desc,jdbcType=VARCHAR},0)
+        #{goods_desc,jdbcType=VARCHAR},0,0)
     </insert>
 
 </mapper>

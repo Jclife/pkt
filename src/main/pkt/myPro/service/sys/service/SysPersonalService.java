@@ -1,5 +1,6 @@
 package myPro.service.sys.service;
 
+import myPro.bean.seller.Store;
 import myPro.bean.sys.HisCartPo;
 import myPro.bean.sys.HistoryGoods;
 
@@ -52,4 +53,11 @@ public interface SysPersonalService {
      * @return
      */
     boolean changeGoodsStatus(int com_id);
+
+    /**
+     * 返回订单的商家坐标和买家坐标
+     * @param com_id
+     * @return
+     */
+    List<String> returnMapPoint(int com_id);
 }

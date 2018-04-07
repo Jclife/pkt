@@ -47,6 +47,7 @@
             <li class="dropdown avatar-dropdown">
               <img src="<%=basePath%>/resources/asset/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
               <ul class="dropdown-menu user-dropdown">
+                <li><a href="<%=basePath%>/pkt/index">返回官网</a></li>
                 <li><a href="<%=basePath%>/seller/login"><span class="fa fa-power-off"></span> 返回登录</a></li>
               </ul>
             </li>
@@ -63,6 +64,7 @@
                 </c:otherwise>
               </c:choose>
               <ul class="dropdown-menu user-dropdown">
+                <li><a href="<%=basePath%>/pkt/index">返回官网</a></li>
                 <li><a onclick="seller_exit()" style="cursor:pointer;"><span class="fa fa-power-off"></span> 退出登录</a></li>
               </ul>
             </li>

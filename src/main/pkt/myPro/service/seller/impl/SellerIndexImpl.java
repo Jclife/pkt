@@ -52,13 +52,8 @@ public class SellerIndexImpl implements SellerIndexService{
     }
 
     //TODO 得到评论数量
-    public int commentNum(List<Goods> list) {
-        int num = 0;
-//        for (int i = 0; i <list.size() ; i++) {
-//            if (list.get(i).getGoods_comment()!=null){
-//                num++;
-//            }
-//        }
+    public int commentNum(int store_id) {
+        int num = seller.commentNum(store_id);
         return num;
     }
 

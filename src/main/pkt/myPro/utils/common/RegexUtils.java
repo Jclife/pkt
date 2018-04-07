@@ -14,7 +14,7 @@ public class RegexUtils {
     public static boolean checkPhone(String phone){
         boolean re = false;
         try {
-            String phoneReg="^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$"; //手机号码正则
+            String phoneReg="^((13[0-9])|(15[^4,\\D])|(18[0,3-9]))\\d{8}$"; //手机号码正则
             re = Pattern.matches(phoneReg,phone);
             System.out.println(phone+"   "+re);
         }catch (Exception e){
@@ -22,7 +22,6 @@ public class RegexUtils {
         }
         return re;
     }
-
 
     public static boolean checkEmail(String email){
         boolean re = false;

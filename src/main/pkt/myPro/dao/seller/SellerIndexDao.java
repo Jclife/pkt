@@ -26,4 +26,9 @@ public interface SellerIndexDao {
      * @return
      */
     List<Goods> moneySaleList(int store_id);
+
+    /**
+     * 评论数量
+     */
+    int commentNum(int store_id);
 }

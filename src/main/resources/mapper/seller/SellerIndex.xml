@@ -29,4 +29,8 @@
     <select id="moneySaleList" resultMap="goodsMap">
         SELECT * FROM goods_tab WHERE store_id = #{store_id} ORDER BY (goods_sale_count*goods_price_now) DESC ;
     </select>
+
+    <select id="commentNum" resultType="java.lang.Integer">
+        SELECT COUNT(content) FROM comment_tab WHERE store_id = #{store_id};
+    </select>
 </mapper>

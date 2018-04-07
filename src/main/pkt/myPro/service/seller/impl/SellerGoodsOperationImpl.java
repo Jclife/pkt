@@ -1,6 +1,5 @@
 package myPro.service.seller.impl;
 
-import myPro.bean.seller.Goods;
 import myPro.bean.seller.GoodsOp;
 import myPro.bean.sys.HistoryGoods;
 import myPro.dao.seller.SellerOperationDao;
@@ -32,6 +31,9 @@ public class SellerGoodsOperationImpl implements SellerGoodsOperationService{
     public List<GoodsOp> getOperationGood(int store_id,int get_goods,int limit,int last) {
         System.out.println(store_id+"                "+get_goods);
         List<HistoryGoods> dbGoods = seller.getOrderGoodsToOperation(store_id,get_goods,limit,last);
+
+
+
         //dbGoods 转 封装的goodOp
         List<GoodsOp> goodsOpList = new ArrayList<GoodsOp>();
         for (int i = 0; i < dbGoods.size(); i++) {
@@ -50,12 +52,11 @@ public class SellerGoodsOperationImpl implements SellerGoodsOperationService{
             goodsOp.setCount(tmpGoods.getGoods_count());
             goodsOp.setTime(tmpGoods.getShopTime());
             goodsOp.setContent(dbGoods.get(i).getContent());
-            goodsOp.setTotalPrice(goodsOp.getCount(),goodsOp.getPrice());
             goodsOp.setGoods_name(seller.getNameFromGoodsId(tmpGoods.getGoods_id()));
             goodsOp.setPrice(seller.getPriceFromGoodsId(tmpGoods.getGoods_id()));
+            goodsOp.setTotalPrice(goodsOp.getCount(),goodsOp.getPrice());
             goodsOpList.add(goodsOp);
         }
-
         return goodsOpList;
     }
 

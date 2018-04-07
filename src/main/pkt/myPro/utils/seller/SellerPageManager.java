@@ -10,7 +10,6 @@ package myPro.utils.seller;
 public interface SellerPageManager {
 
     String INDEX = "seller/index";
-    String FORGET_PASS = "seller/forgetPass";
     String EDIT = "seller/edit";
     String LIST = "seller/list";
     String LOGIN = "seller/login";
@@ -20,7 +19,6 @@ public interface SellerPageManager {
     String GOODS_OPERATION="seller/goodsOperation";
 
     String REDIRECT_INDEX="redirect:/seller/index";
-    String REDIRECT_FORGET_PASS="redirect:/seller/forgetPass";
     String REDIRECT_EDIT="redirect:/seller/edit";
     String REDIRECT_LIST="redirect:/seller/list";
     String REDIRECT_LOGIN="redirect:/seller/login";

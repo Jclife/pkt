@@ -1,5 +1,6 @@
 package myPro.dao.sys;
 
+import myPro.bean.seller.Store;
 import myPro.bean.sys.HistoryGoods;
 import org.apache.ibatis.annotations.Param;
 
@@ -48,4 +49,12 @@ public interface SysPersonalDao {
      */
     void changeGoodsStatus(@Param("com_id") int com_id);
 
+    /**
+     * 查询订单表用于地图
+     * @param com_id
+     * @return
+     */
+    HistoryGoods getCommentPoint(@Param("com_id") int com_id);
+
+    String getStorePoint(@Param("store_id") int store_id);
 }

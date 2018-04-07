@@ -60,7 +60,7 @@
 											<li><a style="cursor:pointer;" onclick="quitLogin()">退出登录</a></li>
 										</ul>
 									</li>
-									<li><a href="<%=basePath%>/seller/login">卖家版</a></li>
+									<li><a href="<%=basePath%>/seller/index">卖家版</a></li>
 								</c:otherwise>
 							</c:choose>
 						</ul>

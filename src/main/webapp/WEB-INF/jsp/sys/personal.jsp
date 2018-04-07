@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="<%=basePath%>/resources/layui/css/layui.css" type="text/css" media="all">
 <link rel="stylesheet" href="<%=basePath%>/resources/mycss/pkt-index.css" type="text/css" media="all">
 <link rel="stylesheet" href="<%=basePath%>/resources/mycss/sys/style.css" type="text/css">
+
 <link href="http://fonts.googleapis.com/css?family=Great+Vibes%7CLato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -234,25 +235,31 @@
 					<%--待收货--%>
 					<div class="per_box"  style="display: none;">
 						<ul class="per_navul">
-							<li style="width: 18%">
+							<li style="width: 15%">
 								图片
 							</li>
-							<li style="width: 16%">名称</li>
-							<li style="width: 18%">数量*价格</li>
-							<li style="width: 16%">合计</li>
-							<li style="width: 16%">时间</li>
-							<li style="width: 16%">操作</li>
+							<li style="width: 15%">名称</li>
+							<li style="width: 15%">数量*价格</li>
+							<li style="width: 15%">合计</li>
+							<li style="width: 15%">时间</li>
+							<li style="width: 12%">查看</li>
+							<li style="width: 12%">操作</li>
 						</ul>
 						<c:forEach items="${waitCart}" var="waitCart" varStatus="num">
 							<ul class="per_listul">
-								<li style="width: 18%">
+								<li style="width: 15%">
 									<img src="http://123.207.250.128:8888/${waitCart.imgs}" style="vertical-align: middle;height: 80px;width: 80px"/>
 								</li>
-								<li style="width: 16%">${waitCart.name}</li>
-								<li style="width: 18%">${waitCart.num}  *  ¥${waitCart.price}</li>
-								<li style="width: 16%">¥${waitCart.totalPrice}</li>
-								<li style="width: 16%">${waitCart.time}</li>
-								<li style="width: 16%"><button type="button" gid="${waitCart.com_id}" onclick="confirmReceipt(this)" class="btn btn-primary">确认收货</button></li>
+								<li style="width: 15%">${waitCart.name}</li>
+								<li style="width: 15%">${waitCart.num}  *  ¥${waitCart.price}</li>
+								<li style="width: 15%">¥${waitCart.totalPrice}</li>
+								<li style="width: 15%">${waitCart.time}</li>
+								<li style="width: 12%">
+									<button type="button" gid="${waitCart.com_id}" onclick="checkMap(this)" class="btn btn-primary">正在配送中</button>
+								</li>
+								<li style="width: 12%">
+									<button type="button" gid="${waitCart.com_id}" onclick="confirmReceipt(this)" class="btn btn-primary">确认收货</button>
+								</li>
 							</ul>
 						</c:forEach>
 					</div>
@@ -441,6 +448,7 @@
 		<div class="backtotop" id="backtotop"></div>
 	</div>
 </div>
+
 <script type="text/javascript" src="<%=basePath%>/resources/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/resources/js/jquery-migrate.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>/resources/js/bootstrap.min.js"></script>

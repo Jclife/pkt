@@ -15,7 +15,8 @@ public interface SysPageManager {
     String SHOP = "sys/shop";
     String SHOP_DETAIL = "sys/shop-detail";
     String LOGIN = "sys/login";
-    String PERSIONAL="sys/personal";
+    String PERSONAL="sys/personal";
+    String CHECK_DELIVERY="sys/map";
 
     String REDIRECT_INDEX="redirect:/pkt/index";
 }

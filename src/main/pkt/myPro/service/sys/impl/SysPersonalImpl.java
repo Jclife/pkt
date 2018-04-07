@@ -2,16 +2,22 @@ package myPro.service.sys.impl;
 
 import myPro.bean.seller.Goods;
 import myPro.bean.seller.GoodsPo;
+import myPro.bean.seller.Store;
 import myPro.bean.sys.HisCartPo;
 import myPro.bean.sys.HistoryGoods;
+import myPro.dao.seller.SellerIndexDao;
 import myPro.dao.sys.SysPersonalDao;
 import myPro.service.sys.service.SysPersonalService;
 import myPro.service.sys.service.SysUtilService;
+import myPro.utils.common.DataConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author liujun
@@ -83,5 +89,26 @@ public class SysPersonalImpl implements SysPersonalService{
         }catch (Exception e){
             return false;
         }
+    }
+
+    public List<String> returnMapPoint(int com_id) {
+        HistoryGoods goods = sys.getCommentPoint(com_id);
+        List<String> result = new ArrayList<String>();
+        Map<String,String> userMap = new HashMap<String, String>();
+        try {
+            userMap = DataConversion.jsonToMap(goods.getUserInfo());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //买家坐标
+        result.add(0,userMap.get("lng"));
+        result.add(1,userMap.get("lat"));
+
+        //卖家坐标
+        String storePoint = sys.getStorePoint(goods.getStore_id());
+        result.add(2,storePoint.split(",")[0]);
+        result.add(3,storePoint.split(",")[1]);
+
+        return result;
     }
 }

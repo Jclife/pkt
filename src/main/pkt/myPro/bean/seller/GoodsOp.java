@@ -44,7 +44,7 @@ public class GoodsOp {
     }
 
     public void setTotalPrice(int num, float price) {
-        float tmpPrice = count * price;
+        float tmpPrice = num * price;
         BigDecimal bd = new BigDecimal((double)tmpPrice);
         int scale = 2;
         int roundingMode = 4;
@@ -54,10 +54,6 @@ public class GoodsOp {
 
     public BigDecimal getTotalPrice() {
         return totalPrice;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
     }
 
     public int getCom_id() {

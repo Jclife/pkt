@@ -31,10 +31,10 @@ public interface SellerIndexService {
 
     /**
      * 首页得到评论数量
-     * @param list
+     * @param
      * @return
      */
-    int commentNum(List<Goods> list);
+    int commentNum(int store_id);
 
     /**
      * 首页热卖榜，菜品售出量排行

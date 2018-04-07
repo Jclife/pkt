@@ -14,6 +14,7 @@ import myPro.utils.sys.SysPageManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -75,7 +76,7 @@ public class SysPersonalController implements SysPageManager{
         model.addAttribute("histCart",historyList);
         model.addAttribute("waitCart",waitList);
         model.addAttribute("sendCart",sendList);
-        return PERSIONAL;
+        return PERSONAL;
     }
 
     @RequestMapping("addComment")
@@ -108,6 +109,20 @@ public class SysPersonalController implements SysPageManager{
     public String changeGoodsStatus(int com_id){
         boolean br = service.changeGoodsStatus(com_id);
         return br?"ok":"error";
+    }
+
+    @RequestMapping(value = "checkDelivery/{cid}")
+    public String checkDelivery(@PathVariable("cid") int cid, HttpSession session,Model model){
+        User user = (User) session.getAttribute("userInfo");
+        if (user==null){
+            return REDIRECT_INDEX;
+        }
+        List<String> list = service.returnMapPoint(cid);
+        model.addAttribute("buyersLng",list.get(0));
+        model.addAttribute("buyersLat",list.get(1));
+        model.addAttribute("sellersLng",list.get(2));
+        model.addAttribute("sellersLat",list.get(3));
+        return CHECK_DELIVERY;
     }
 
 }

@@ -48,9 +48,9 @@ public class SellerLoginAndRegisterController implements SellerPageManager{
         if (store!=null){
             if (MD5Utils.verifyMD5(password,store.getStore_password())){
                 result.put("status","success");
-                if (session.getAttribute("userInfo")!=null){
-                    session.removeAttribute("userInfo");
-                }
+//                if (session.getAttribute("userInfo")!=null){
+//                    session.removeAttribute("userInfo");
+//                }
                 SessionUtils.setSessionAtt(session,store,"sellerInfo");
             }else {
                 result.put("status","error");
@@ -95,11 +95,6 @@ public class SellerLoginAndRegisterController implements SellerPageManager{
             result = "noUser";
         }
         return result;
-    }
-
-    @RequestMapping("forget_pass")
-    public String forgetPass(){
-        return FORGET_PASS;
     }
 
 }

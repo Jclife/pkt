@@ -1,7 +1,5 @@
 package myPro.bean.sys;
 
-import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * @author liujun

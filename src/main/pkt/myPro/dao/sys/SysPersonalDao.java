@@ -1,6 +1,5 @@
 package myPro.dao.sys;
 
-import myPro.bean.seller.Store;
 import myPro.bean.sys.HistoryGoods;
 import org.apache.ibatis.annotations.Param;
 

@@ -47,7 +47,6 @@ public class SellerGoodsOperationController implements SellerPageManager{
         }else {
             return REDIRECT_LOGIN;
         }
-
     }
 
     @RequestMapping(value = "operation/{type}/{page}/{limit}")

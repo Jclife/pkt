@@ -1,6 +1,5 @@
 package myPro.bean.sys;
 
-import java.util.Date;
 
 /**
  * @author liujun

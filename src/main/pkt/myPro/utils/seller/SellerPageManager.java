@@ -19,9 +19,6 @@ public interface SellerPageManager {
     String GOODS_OPERATION="seller/goodsOperation";
 
     String REDIRECT_INDEX="redirect:/seller/index";
-    String REDIRECT_EDIT="redirect:/seller/edit";
     String REDIRECT_LIST="redirect:/seller/list";
     String REDIRECT_LOGIN="redirect:/seller/login";
-    String REDIRECT_REGISTER="redirect:/seller/register";
-    String REDIRECT_PERFECT="redirect:/seller/perfect";
 }
